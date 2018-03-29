@@ -16,9 +16,9 @@
         <div class="grid">
             <p><img src="images/coming.png" title=""></p>
 
-            <form>
-                <input type="text" size="30" value="What are you looking for?" onblur="if (this.value=='') this.value = 'What are you looking for?'" onfocus="if (this.value=='What are you looking for?') this.value = ''" name="email" id="email">
-                <a href="#"><button class="btn span btn-4 btn-4a icon-arrow-right"><span></span></button></a>
+            <form action="search" method="post">
+                <input type="text" size="30" value="What are you looking for?" onblur="if (this.value=='') this.value = 'What are you looking for?'" onfocus="if (this.value=='What are you looking for?') this.value = ''" name="query" id="query">
+                <button class="submit btn span btn-4 btn-4a icon-arrow-right"><span></span></button>
 
                 <div id="response"></div>
 
