@@ -50,7 +50,7 @@
 
     <div class="row">
         <div class="well search-result">
-            <a class="row" href="#">
+            <a class="row" href="https://www.thegioididong.com/dtdd/iphone-6-32gb-gold">
                 <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
                     <img class="img-fluid" src="images/product1.png" alt="">
                 </div>
@@ -65,7 +65,7 @@
 
     <div class="row">
         <div class="well search-result">
-            <a class="row" href="#">
+            <a class="row" href="https://www.thegioididong.com/dtdd/iphone-6-64gb">
                 <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
                     <img class="img-fluid" src="images/product2.png" alt="">
                 </div>
@@ -80,7 +80,7 @@
 
     <div class="row">
         <div class="well search-result">
-            <a class="row" href="#">
+            <a class="row" href="https://www.thegioididong.com/dtdd/iphone-6-128gb">
                 <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
                     <img class="img-fluid" src="images/product3.png" alt="">
                 </div>
