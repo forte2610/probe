@@ -8,7 +8,6 @@ public class Product {
     private String images;
     private String type;
     private String description;
-    private ProductSpecs specs;
 
     public Product() {
     }
@@ -79,3 +78,5 @@ public class Product {
         this.description = description;
     }
 }
+
+
