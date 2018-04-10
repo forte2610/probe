@@ -20,7 +20,7 @@ public class UserController {
     private UserService userService;
 
     @ModelAttribute("newUser")
-    public User populateUser() {
+    public User getNewUser() {
         User user = new User();
         return user;
     }
@@ -34,10 +34,8 @@ public class UserController {
 
 
     @RequestMapping(value="/registration", method = RequestMethod.GET)
-    public ModelAndView registration(){
+    public ModelAndView registration(@ModelAttribute("newUser") User user){
         ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
-        modelAndView.addObject("user", user);
         modelAndView.setViewName("registration");
         return modelAndView;
     }

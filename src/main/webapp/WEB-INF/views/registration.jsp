@@ -4,10 +4,10 @@
 <html>
 <head>
     <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/registration.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 <form:form action="login" method="get">
@@ -18,8 +18,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form:form autocomplete="off" action="registration"
-                       modelAttribute="newUser" method="post" class="form-horizontal"
-                  role="form">
+                       modelAttribute="newUser" method="post" class="form-horizontal">
                 <h2>Registration Form</h2>
                 <div class="form-group">
                     <div class="col-sm-9">
