@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Probe | Find your favorite smartphone and PC at the cheapest prices</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/home.css" rel="stylesheet" type="text/css" media="all" />
     <link href='http://fonts.googleapis.com/css?family=Petit+Formal+Script' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300' rel='stylesheet' type='text/css'>
