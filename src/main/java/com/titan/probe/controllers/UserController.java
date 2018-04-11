@@ -46,8 +46,8 @@ public class UserController {
         User userExists = userService.findUserByUsername(user.getEmail());
         if (userExists != null) {
             bindingResult
-                    .rejectValue("email", "error.user",
-                            "There is already a user registered with the email provided");
+                    .rejectValue("username", "error.user",
+                            "That username is already taken!");
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");

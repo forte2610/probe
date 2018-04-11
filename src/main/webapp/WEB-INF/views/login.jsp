@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>Spring Security Tutorial</title>
+    <title>Login to Probe</title>
     <link rel="stylesheet" type="text/css" href="css/login.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -18,20 +18,16 @@
 
 <div class="container">
     <img src="images/coming.jpg" class="img-fluid center-block" width="300" height="300" alt="Logo" />
-    <form:form action="@{/login}" method="POST" class="form-signin">
+    <form action="login" method="POST" class="form-signin">
         <h3 class="form-signin-heading" text="Welcome"></h3>
         <br/>
 
-        <form:input path="username" type="text" id="username" name="username"  placeholder="Username"
+        <input  type="text" id="username" name="username"  placeholder="Username"
                class="form-control" /> <br/>
-        <form:input path="password" type="password"  placeholder="Password"
+        <input type="password"  placeholder="Password"
                id="password" name="password" class="form-control" /> <br />
-
-        <div align="center" if="${param.error}">
-            <p>Username or Password invalid, please verify</p>
-        </div>
         <button type="submit" class="btn btn-lg btn-primary btn-block" name="Login">Login</button>
-    </form:form>
+    </form>
 </div>
 </body>
 </html>
