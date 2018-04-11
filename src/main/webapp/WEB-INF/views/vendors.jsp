@@ -35,7 +35,7 @@
             <div class="well search-result">
                 <a class="row" href="${vendor.url}">
                     <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
-                        <img class="img-fluid" src="images/${vendor.logo}" alt="">
+                        <img class="img-fluid" src="logos/${vendor.logo}" alt="">
                     </div>
                     <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
                         <h3>${vendor.name}</h3>
