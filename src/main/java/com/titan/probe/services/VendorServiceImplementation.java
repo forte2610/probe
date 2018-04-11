@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VendorServiceImplementation implements VendorService {
@@ -17,5 +18,10 @@ public class VendorServiceImplementation implements VendorService {
     @Override
     public Iterable<Vendor> findAll() {
         return vendorRepository.findAll();
+    }
+
+    @Override
+    public Optional<Vendor> findVendorById(int id) {
+        return vendorRepository.findById(id);
     }
 }
