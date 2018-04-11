@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -17,7 +18,7 @@
 </form:form>
 
 <div class="container">
-    <img src="images/coming.jpg" class="img-fluid center-block" width="300" height="300" alt="Logo" />
+    <img src="images/coming.png" class="img-fluid center-block" width="300" height="300" alt="Logo" />
     <form action="login" method="POST" class="form-signin">
         <h3 class="form-signin-heading" text="Welcome"></h3>
         <br/>
@@ -27,6 +28,9 @@
         <input type="password"  placeholder="Password"
                id="password" name="password" class="form-control" /> <br />
         <button type="submit" class="btn btn-lg btn-primary btn-block" name="Login">Login</button>
+        <c:if test="${param.error}">
+            ${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}
+        </c:if>
     </form>
 </div>
 </body>

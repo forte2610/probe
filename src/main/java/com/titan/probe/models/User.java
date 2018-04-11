@@ -9,9 +9,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "user_loginname")
+    @Column(name = "login")
     private String username;
-    @Column(name = "user_password")
+    @Column(name = "password")
     private String password;
     @Column(name = "email")
     private String email;
