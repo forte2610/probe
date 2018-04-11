@@ -6,14 +6,14 @@ import javax.persistence.*;
 @Table(name="USER")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     @Column(name = "user_loginname")
     private String username;
     @Column(name = "user_password")
     private String password;
-    @Column(name = "user_email")
+    @Column(name = "email")
     private String email;
     @Column(name = "active")
     private boolean active;

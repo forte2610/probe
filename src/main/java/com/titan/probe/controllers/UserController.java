@@ -43,7 +43,7 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        User userExists = userService.findUserByUsername(user.getEmail());
+        User userExists = userService.findUserByUsername(user.getUsername());
         if (userExists != null) {
             bindingResult
                     .rejectValue("username", "error.user",
