@@ -19,7 +19,7 @@
         <nav aria-label="breadcrumb" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="breadcrumb-item active">
                     Vendors
@@ -33,7 +33,7 @@
     <c:forEach  items="${vendors}" var ="vendor">
         <div class="row">
             <div class="well search-result">
-                <a class="row" href="${vendor.url}">
+                <a class="row" href="/vendor-details/${vendor.id}">
                     <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
                         <img class="img-fluid" src="logos/${vendor.logo}" alt="">
                     </div>
