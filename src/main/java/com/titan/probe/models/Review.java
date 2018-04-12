@@ -14,20 +14,24 @@ public class Review {
     private float score;
     @Column(name="content")
     private String content;
-    @Column(name="content")
+    @Column(name="timestamp")
     private Timestamp timestamp;
-    @Column(name="author")
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="author")
     private User author;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="vendor")
+    private Vendor vendor;
 
     public Review() {
     }
 
-    public Review(float score, String content, Timestamp timestamp, User author) {
+    public Review(float score, String content, Timestamp timestamp, User author, Vendor vendor) {
         this.score = score;
         this.content = content;
         this.timestamp = timestamp;
         this.author = author;
+        this.vendor = vendor;
     }
 
     public int getId() {
@@ -68,5 +72,13 @@ public class Review {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public Vendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
     }
 }

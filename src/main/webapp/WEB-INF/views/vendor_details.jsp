@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-    <link href="../css/results.css" rel="stylesheet" type="text/css"></link>
+    <link href="../css/vendor_details.css" rel="stylesheet" type="text/css"></link>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container bootstrap snippet">
         <div class="row">
-            <div class="card">
+            <div class="card main-content">
                 <a class="row">
                     <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
                         <img class="img-fluid" src="../logos/${vendor.logo}" alt="">
@@ -27,6 +27,7 @@
                         <p>${vendor.description}</p>
                     </div>
                 </a>
+                <a href="submit-review/${vendor.id}"><button class="btn btn-default">Submit a review</button></a>
             </div>
         </div>
 </div>
