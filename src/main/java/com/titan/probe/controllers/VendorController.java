@@ -53,9 +53,11 @@ public class VendorController {
     @RequestMapping(value="/vendor-details/{id}", method = RequestMethod.GET)
     public ModelAndView viewVendorDetails(@PathVariable(value="id") int vendorId){
         Vendor currentVendor = vendorService.findVendorById(vendorId).get();
+        List<Review> allReviews = vendorService.getReviews(vendorId);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("vendor_details");
         modelAndView.addObject("vendor", currentVendor);
+        modelAndView.addObject("reviews", allReviews);
         return modelAndView;
     }
 

@@ -26,8 +26,23 @@
                 <p>${vendor.description}</p>
             </div>
         </a>
-        <a href="/submit-review/${vendor.id}"><button class="btn btn-default float-left"><i class="fas fa-comment"></i> Submit a review</button></a>
-        <a href="${vendor.url}"><button class="btn btn-default float-right"><i class="fas fa-link"></i> Visit vendor site</button></a>
+        <div>
+            <a href="/submit-review/${vendor.id}"><button class="btn btn-default float-left"><i class="fas fa-comment"></i> Submit a review</button></a>
+            <a href="${vendor.url}"><button class="btn btn-default float-right"><i class="fas fa-link"></i> Visit vendor site</button></a>
+        </div>
+    </div>
+
+    <div class="card main-content">
+        <c:forEach  items="${reviews}" var ="review">
+            <div class="row">
+                <div class="col-md-12">
+                    <p><i>Review by: ${review.author.username}</i></p>
+                    <p>${review.score} <i class="fas fa-star"></i></p>
+                    <p>${review.content}</p>
+                </div>
+            </div>
+            <hr>
+        </c:forEach>
     </div>
 </div>
 

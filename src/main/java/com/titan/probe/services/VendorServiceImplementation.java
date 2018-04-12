@@ -1,6 +1,7 @@
 package com.titan.probe.services;
 
 import com.titan.probe.Repositories.VendorRepository;
+import com.titan.probe.models.Review;
 import com.titan.probe.models.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,5 +24,11 @@ public class VendorServiceImplementation implements VendorService {
     @Override
     public Optional<Vendor> findVendorById(int id) {
         return vendorRepository.findById(id);
+    }
+
+    @Override
+    public List<Review> getReviews(int vendorId) {
+        Vendor vendor = findVendorById(vendorId).get();
+        return vendorRepository.findReviewsForVendor(vendor);
     }
 }
