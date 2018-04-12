@@ -53,8 +53,8 @@ public class VendorController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/submit-review", method = RequestMethod.GET)
-    public ModelAndView submitNewReview(@ModelAttribute("newReview") Review review){
+    @RequestMapping(value="/submit-review/{id}", method = RequestMethod.GET)
+    public ModelAndView submitNewReview(@PathVariable(value="id") int vendorId, @ModelAttribute("newReview") Review review){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("submit_review");
         return modelAndView;

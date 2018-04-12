@@ -15,21 +15,19 @@
 <body>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container bootstrap snippet">
-        <div class="row">
-            <div class="card main-content">
-                <a class="row">
-                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
-                        <img class="img-fluid" src="../logos/${vendor.logo}" alt="">
-                    </div>
-                    <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
-                        <h3>${vendor.name}</h3>
-                        <p>Review score: ${vendor.score} <i class="fas fa-star"></i></p>
-                        <p>${vendor.description}</p>
-                    </div>
-                </a>
-                <a href="submit-review/${vendor.id}"><button class="btn btn-default">Submit a review</button></a>
+    <div class="card main-content">
+        <a class="row">
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+                <img class="img-fluid" src="../logos/${vendor.logo}" alt="">
             </div>
-        </div>
+            <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
+                <h3>${vendor.name}</h3>
+                <p>Review score: ${vendor.score} <i class="fas fa-star"></i></p>
+                <p>${vendor.description}</p>
+            </div>
+        </a>
+        <a href="../submit-review/${vendor.id}"><button class="btn btn-default">Submit a review</button></a>
+    </div>
 </div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
