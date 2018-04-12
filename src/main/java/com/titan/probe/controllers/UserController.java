@@ -40,7 +40,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @RequestMapping(value="/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findUserByUsername(user.getUsername());

@@ -26,7 +26,7 @@
                 <p>${vendor.description}</p>
             </div>
         </a>
-        <a href="../submit-review/${vendor.id}"><button class="btn btn-default">Submit a review</button></a>
+        <a href="/submit-review/${vendor.id}"><button class="btn btn-default">Submit a review</button></a>
     </div>
 </div>
 

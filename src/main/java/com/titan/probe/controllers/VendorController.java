@@ -55,16 +55,16 @@ public class VendorController {
 
     @RequestMapping(value="/submit-review/{id}", method = RequestMethod.GET)
     public ModelAndView submitNewReview(@PathVariable(value="id") int vendorId, @ModelAttribute("newReview") Review review){
+        Vendor currentVendor = vendorService.findVendorById(vendorId).get();
+        review.setVendor(currentVendor);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("submit_review");
         return modelAndView;
     }
 
-    @RequestMapping(value="/submit-review/{id}", method = RequestMethod.POST)
-    public ModelAndView submitNewReview(@PathVariable(value="id") int vendorId, @Valid @ModelAttribute("newReview") Review review, BindingResult result){
-        Vendor currentVendor = vendorService.findVendorById(vendorId).get();
-        review.setVendor(currentVendor);
-        reviewService.saveReview(review);
+    @RequestMapping(value="/submit-review", method = RequestMethod.POST)
+    public ModelAndView submitNewReview( @Valid @ModelAttribute("newReview") Review review, BindingResult result){
+        if (review.getVendor() != null) reviewService.saveReview(review);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("submit_review");
         return modelAndView;

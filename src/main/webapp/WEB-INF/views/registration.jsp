@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" href="css/registration.css" />
+    <link rel="stylesheet" type="text/css" href="/css/registration.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-6 offset-md-3">
             <form:form autocomplete="off" action="registration"
                        modelAttribute="newUser" method="post" class="form-horizontal">
                 <h2>Registration Form</h2>
