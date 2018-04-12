@@ -17,10 +17,6 @@ public class ReviewServiceImplementation implements ReviewService {
     @Override
     public void saveReview(Review review) {
         review.setTimestamp(new Timestamp(System.currentTimeMillis()));
-        System.out.println("Vendor: " + review.getVendor().getName());
-        System.out.println("Author: " + review.getAuthor().getUsername());
-        System.out.println("Score: " + review.getScore());
-        System.out.println("Comment: " + review.getContent());
         reviewRepository.save(review);
     }
 }
