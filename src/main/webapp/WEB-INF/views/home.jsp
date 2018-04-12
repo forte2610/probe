@@ -6,6 +6,7 @@
     <link href='http://fonts.googleapis.com/css?family=Petit+Formal+Script' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300' rel='stylesheet' type='text/css'>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="content">
@@ -26,7 +27,9 @@
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
-        <div class="clear"></div>
+        <div class="footer">
+            <p class="a"><a class="home-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a><a class="home-link" href="/vendors"><i class="fas fa-list-alt"></i> Vendors</a></p>
+        </div>
     </div>
 </div>
 <div class="clear"></div>
