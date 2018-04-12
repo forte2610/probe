@@ -21,7 +21,7 @@
                     <div class="col-sm-9">
                         <label for="score">Give this vendor a score:</label>
                         <form:input type="number" name="score" path="score" value="2.5"
-                                    min="1" max="5" class="form-control" />
+                                    min="1" max="5" step="0.5" class="form-control" />
                     </div>
                 </div>
 

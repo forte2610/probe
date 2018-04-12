@@ -70,7 +70,7 @@ public class VendorController {
     }
 
     @RequestMapping(value="/submit-review/{id}", method = RequestMethod.POST)
-    public ModelAndView submitNewReview(@PathVariable(value="id") int vendorId, @Valid @ModelAttribute("newReview") Review review, BindingResult result){
+    public String submitNewReview(@PathVariable(value="id") int vendorId, @Valid @ModelAttribute("newReview") Review review, BindingResult result){
         Vendor currentVendor = vendorService.findVendorById(vendorId).get();
         review.setVendor(currentVendor);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -78,8 +78,6 @@ public class VendorController {
         User currentUser = userService.findUserByUsername(currentPrincipalName);
         review.setAuthor(currentUser);
         reviewService.saveReview(review);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("submit_review");
-        return modelAndView;
+        return "redirect:/vendor-details/" + vendorId;
     }
 }
