@@ -4,9 +4,12 @@ import com.titan.probe.models.Review;
 import com.titan.probe.models.User;
 import com.titan.probe.models.Vendor;
 import com.titan.probe.services.ReviewService;
+import com.titan.probe.services.UserService;
 import com.titan.probe.services.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +29,9 @@ public class VendorController {
 
     @Autowired
     ReviewService reviewService;
+
+    @Autowired
+    UserService userService;
 
     @ModelAttribute("newReview")
     public Review getReview() {
@@ -55,16 +61,21 @@ public class VendorController {
 
     @RequestMapping(value="/submit-review/{id}", method = RequestMethod.GET)
     public ModelAndView submitNewReview(@PathVariable(value="id") int vendorId, @ModelAttribute("newReview") Review review){
-        Vendor currentVendor = vendorService.findVendorById(vendorId).get();
-        review.setVendor(currentVendor);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("submit_review");
+        modelAndView.addObject("vendorid", vendorId);
         return modelAndView;
     }
 
-    @RequestMapping(value="/submit-review", method = RequestMethod.POST)
-    public ModelAndView submitNewReview( @Valid @ModelAttribute("newReview") Review review, BindingResult result){
-        if (review.getVendor() != null) reviewService.saveReview(review);
+    @RequestMapping(value="/submit-review/{id}", method = RequestMethod.POST)
+    public ModelAndView submitNewReview(@PathVariable(value="id") int vendorId, @Valid @ModelAttribute("newReview") Review review, BindingResult result){
+        Vendor currentVendor = vendorService.findVendorById(vendorId).get();
+        review.setVendor(currentVendor);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        User currentUser = userService.findUserByUsername(currentPrincipalName);
+        review.setAuthor(currentUser);
+        reviewService.saveReview(review);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("submit_review");
         return modelAndView;

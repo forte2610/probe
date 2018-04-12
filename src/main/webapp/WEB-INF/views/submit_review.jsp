@@ -14,7 +14,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <form:form action="/submit-review" method="post"
+            <form:form action="/submit-review/${vendorid}" method="post"
                        modelAttribute="newReview" autocomplete="off"  class="form-horizontal">
                 <h2>Submit review</h2>
                 <div class="form-group">
@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <div class="col-sm-9">
                         <label for="content">Leave a comment:</label>
-                        <form:input type="text" name="content" path="content" placeholder="Content"
+                        <form:textarea type="text" rows="5" name="content" path="content" placeholder="Content"
                                     class="form-control" />
                     </div>
                 </div>
