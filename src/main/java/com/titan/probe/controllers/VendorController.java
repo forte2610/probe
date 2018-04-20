@@ -58,6 +58,7 @@ public class VendorController {
         modelAndView.setViewName("vendor_details");
         modelAndView.addObject("vendor", currentVendor);
         modelAndView.addObject("reviews", allReviews);
+        modelAndView.addObject("review_count", allReviews.size());
         return modelAndView;
     }
 

@@ -41,7 +41,7 @@
                     <p>${review.content}</p>
                 </div>
             </div>
-            <hr>
+            <c:if test = "${review_count > 1}"><hr></c:if>
         </c:forEach>
     </div>
 </div>
