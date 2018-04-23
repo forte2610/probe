@@ -23,7 +23,6 @@ public class TGDDProcessor implements VendorProcessor {
         String url = "https://www.thegioididong.com/tim-kiem?key=";
 
         try {
-            int intPageIndex = 0;
             Document doc = Jsoup.connect(url + keyword)
                     .get();
             Elements productList = doc.getElementsByClass("listsearch").select("li");
@@ -57,13 +56,14 @@ public class TGDDProcessor implements VendorProcessor {
 
                     DecimalFormat formatter = new DecimalFormat("###,###,###");
 
-                    currentProduct.setDescription(productInfo.substring(9, productInfo.length()));
+                    currentProduct.setDescription(productInfo);
 
                     System.out.println("Name: " + currentProduct.getName());
                     System.out.println("Price: " + currentProduct.getPrice());
                     System.out.println("Image: " + currentProduct.getImages());
                     System.out.println("Description: " + currentProduct.getDescription());
 
+                    if (!isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
                 }
 
             }
@@ -76,6 +76,7 @@ public class TGDDProcessor implements VendorProcessor {
         }
     }
 
+    // This is a bunch of spaghetti code. I should look into rewriting it.
     private int parsePrice(String value) {
         int result = -1;
         try {
