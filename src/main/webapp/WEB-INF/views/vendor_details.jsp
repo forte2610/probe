@@ -32,18 +32,20 @@
         </div>
     </div>
 
-    <div class="card main-content">
-        <c:forEach  items="${reviews}" var ="review">
-            <div class="row">
-                <div class="col-md-12">
-                    <p><i>Review by: ${review.author.username}</i></p>
-                    <p>${review.score} <i class="fas fa-star"></i></p>
-                    <p>${review.content}</p>
+    <c:if test = "${review_count > 0}">
+        <div class="card main-content">
+            <c:forEach  items="${reviews}" var ="review">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p><i>Review by: ${review.author.username}</i></p>
+                        <p>${review.score} <i class="fas fa-star"></i></p>
+                        <p>${review.content}</p>
+                    </div>
                 </div>
-            </div>
-            <c:if test = "${review_count > 1}"><hr></c:if>
-        </c:forEach>
-    </div>
+                <c:if test = "${review_count > 1}"><hr></c:if>
+            </c:forEach>
+        </div>
+    </c:if>
 </div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
