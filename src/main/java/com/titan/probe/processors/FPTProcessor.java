@@ -10,38 +10,38 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TGDDProcessor implements VendorProcessor {
+public class FPTProcessor implements VendorProcessor{
     private String keyword;
     private List<Product> resultList;
 
-    public TGDDProcessor(String sKeyword) {
+    public FPTProcessor(String sKeyword) {
         this.keyword = sKeyword;
     }
 
     @Override
     public void process() {
-        String url = "https://www.thegioididong.com/tim-kiem?key=";
+        String url = "https://fptshop.com.vn/tim-kiem/";
 
         try {
             Document doc = Jsoup.connect(url + keyword)
                     .get();
-            Elements productList = doc.getElementsByClass("listsearch").select("li");
+            Elements productList = doc.getElementsByClass("fs-lpitem").select("a");
 
             if (productList.size() == 0) {
                 return;
             }
             for (Element product : productList) {
-                int price = parsePrice(product.select("figure > strong").text());
+                int price = parsePrice(product.getElementsByClass("fs-icpri").text());
                 if (price != -1) {
 
                     Product currentProduct = new Product();
                     // name
-                    currentProduct.setName(product.select("a > h3").text());
+                    currentProduct.setName(product.attr("title"));
                     // url
-                    currentProduct.setVendorURL("http://www.thegioididong.com" + product.select("a").attr("href"));
+                    currentProduct.setVendorURL("https://fptshop.com.vn" + product.attr("href"));
                     // image
 
-                    String imageURL = product.select("a > img").attr("src");
+                    String imageURL = product.getElementsByClass("fs-icimg").select("img").attr("src");
                     if (!imageURL.contains("https")) {
                         imageURL = "https://" + imageURL;
                     }
