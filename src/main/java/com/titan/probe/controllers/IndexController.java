@@ -10,9 +10,4 @@ public class IndexController {
     public String Homepage() {
         return "home";
     }
-
-    @RequestMapping(value="/search", method= RequestMethod.POST)
-    public String Search() {
-        return "results";
-    }
 }
