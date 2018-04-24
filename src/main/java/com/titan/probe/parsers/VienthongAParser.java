@@ -63,6 +63,7 @@ public class VienthongAParser implements VendorParser {
                     System.out.println("Image: " + currentProduct.getImages());
                     System.out.println("URL: " + currentProduct.getVendorURL());
                     System.out.println("Description: " + currentProduct.getDescription());
+                    System.out.println();
 
                     if (!isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
                 }

@@ -27,6 +27,8 @@ public class TGDDParser implements VendorParser {
                     .get();
             Elements productList = doc.getElementsByClass("listsearch").select("li");
 
+            System.out.println("Number of results: " + productList.size());
+
             if (productList.size() == 0) {
                 return;
             }
@@ -59,7 +61,9 @@ public class TGDDParser implements VendorParser {
                     System.out.println("Name: " + currentProduct.getName());
                     System.out.println("Price: " + currentProduct.getPrice());
                     System.out.println("Image: " + currentProduct.getImages());
+                    System.out.println("URL: " + currentProduct.getVendorURL());
                     System.out.println("Description: " + currentProduct.getDescription());
+                    System.out.println();
 
                     if (!isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
                 }
