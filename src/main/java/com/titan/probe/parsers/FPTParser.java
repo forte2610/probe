@@ -15,6 +15,7 @@ public class FPTParser implements VendorParser {
 
     public FPTParser(String sKeyword) {
         this.keyword = sKeyword;
+        resultList = new ArrayList<Product>();
     }
 
     @Override

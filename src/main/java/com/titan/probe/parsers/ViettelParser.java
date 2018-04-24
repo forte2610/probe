@@ -15,6 +15,7 @@ public class ViettelParser implements VendorParser {
 
     public ViettelParser(String sKeyword) {
         this.keyword = sKeyword;
+        resultList = new ArrayList<Product>();
     }
 
     @Override

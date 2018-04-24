@@ -15,6 +15,7 @@ public class TGDDParser implements VendorParser {
 
     public TGDDParser(String sKeyword) {
         this.keyword = sKeyword;
+        resultList = new ArrayList<Product>();
     }
 
     @Override
