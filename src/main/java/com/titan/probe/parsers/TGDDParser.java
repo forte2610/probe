@@ -102,8 +102,11 @@ public class TGDDParser implements VendorParser {
     }
 
     private boolean isDuplicate(String url) {
-        for (Product item : resultList)
-            if (item.getVendorURL().equals(url)) return true;
+        if (resultList.size() == 0) return false;
+        for (Product item : resultList) {
+            String currentURL = item.getVendorURL();
+            if (currentURL == null || currentURL.equals(url)) return true;
+        }
         return false;
     }
 }

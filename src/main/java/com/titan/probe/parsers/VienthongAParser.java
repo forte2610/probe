@@ -104,7 +104,7 @@ public class VienthongAParser implements VendorParser {
     }
 
     private boolean isDuplicate(String url) {
-        if (resultList == null) return false;
+        if (resultList.size() == 0) return false;
         for (Product item : resultList) {
             String currentURL = item.getVendorURL();
             if (currentURL == null || currentURL.equals(url)) return true;
