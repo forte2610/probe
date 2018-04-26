@@ -1,7 +1,7 @@
 package com.titan.probe.controllers;
 
-import com.titan.probe.parsers.TGDDParser;
-import com.titan.probe.parsers.VienthongAParser;
+import com.titan.probe.helpers.Crawler;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,9 +11,20 @@ import org.springframework.web.context.request.WebRequest;
 public class SearchController {
     @RequestMapping(value="/search", method= RequestMethod.POST)
     public String Search(WebRequest req) {
-        VienthongAParser testProcessor = new VienthongAParser(req.getParameter("query"));
-        System.out.println(req.getParameter("query"));
-        testProcessor.process();
+        String keyword = "";
+
+        if (req.getParameter("key") != null) {
+            keyword = req.getParameter("key").trim();
+            String[] itemsKeyword = keyword.split(" ");
+            String temp = "";
+            for (String s : itemsKeyword) {
+                temp += s + " ";
+            }
+            keyword = temp;
+        }
+
+        Crawler crawler = new Crawler(keyword);
+        JSONObject resultObject = crawler.process();
         return "results";
     }
 }
