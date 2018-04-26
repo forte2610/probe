@@ -27,8 +27,6 @@ public class FPTParser implements VendorParser {
                     .get();
             Elements productList = doc.getElementsByClass("fs-lpitem").select("a");
 
-            System.out.println("Number of results: " + productList.size());
-
             if (productList.size() == 0) {
                 return;
             }
@@ -57,13 +55,6 @@ public class FPTParser implements VendorParser {
                     String productInfo = product.select("figure > span").text();
 
                     currentProduct.setDescription(productInfo);
-
-                    System.out.println("Name: " + currentProduct.getName());
-                    System.out.println("Price: " + currentProduct.getPrice());
-                    System.out.println("Image: " + currentProduct.getImages());
-                    System.out.println("URL: " + currentProduct.getVendorURL());
-                    System.out.println("Description: " + currentProduct.getDescription());
-                    System.out.println();
 
                     if (!isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
                 }
@@ -102,7 +93,7 @@ public class FPTParser implements VendorParser {
     }
 
     public List<Product> getResults() {
-        return new ArrayList<>();
+        return resultList;
     }
 
     private boolean isDuplicate(String url) {
