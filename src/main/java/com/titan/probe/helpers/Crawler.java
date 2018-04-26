@@ -1,6 +1,7 @@
 package com.titan.probe.helpers;
 
 import com.titan.probe.models.Product;
+import com.titan.probe.models.ResultObject;
 import com.titan.probe.parsers.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,7 +23,7 @@ public class Crawler {
 
     }
 
-    public JSONObject process() {
+    public ResultObject process() {
         long start = System.currentTimeMillis();
         String strDienMay = keyword;
         String strTheGioiDiDong = keyword.replaceAll(" ", "+");
@@ -44,30 +45,25 @@ public class Crawler {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        JSONArray jsonArray = new JSONArray();
 
+        ResultObject result = new ResultObject();
         Collections.sort(productList, new ProductComparator());
 
         for (Product _product : productList) {
 
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("name", _product.getName());
-            jsonObject.put("image", _product.getImages());
-            jsonObject.put("price", _product.getPrice());
-            jsonObject.put("description", _product.getDescription());
-            jsonObject.put("url", _product.getVendorURL());
-            jsonArray.put(jsonObject);
+            result.getResultList().add(_product);
 
         }
         long end = System.currentTimeMillis();
-        JSONObject result = new JSONObject();
-        result.put("keyword", this.keyword);
+
+        result.setKeyword(this.keyword);
+        result.setCount(result.getResultList().size());
+        result.setPages(1);
 
         DecimalFormat formatter = new DecimalFormat("###,###");
 
-        result.put("elapsed", formatter.format(end - start));
-        result.put("size", productList.size());
-        result.put("results", jsonArray);
+        result.setTimeElapsed(formatter.format(end - start));
+
         return result;
     }
 }

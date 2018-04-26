@@ -1,5 +1,6 @@
 package com.titan.probe.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResultObject {
@@ -10,6 +11,7 @@ public class ResultObject {
     private String timeElapsed;
 
     public ResultObject() {
+        resultList = new ArrayList<>();
     }
 
     public ResultObject(List<Product> resultList, String keyword, int count, int pages, String timeElapsed) {
