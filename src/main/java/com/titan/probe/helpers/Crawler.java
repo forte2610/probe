@@ -16,11 +16,11 @@ import java.util.concurrent.TimeUnit;
 
 public class Crawler {
     private String keyword;
-    public List<Product> productList = new ArrayList<>();
+    public List<Product> productList;
 
     public Crawler(String keyword) {
         this.keyword = keyword;
-
+        productList = new ArrayList<>();
     }
 
     public ResultObject process() {
@@ -46,14 +46,18 @@ public class Crawler {
             ex.printStackTrace();
         }
 
+
         ResultObject result = new ResultObject();
         Collections.sort(productList, new ProductComparator());
+
 
         for (Product _product : productList) {
 
             result.getResultList().add(_product);
 
         }
+
+        System.out.println("Total: " + productList.size());
         long end = System.currentTimeMillis();
 
         result.setKeyword(this.keyword);
