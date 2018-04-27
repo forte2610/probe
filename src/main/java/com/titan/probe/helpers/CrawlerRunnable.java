@@ -19,7 +19,6 @@ public class CrawlerRunnable implements Callable<Object> {
     public Object call() {
 
         parser.process();
-        System.out.println("Thread done. Number of results: " + parser.getResults().size());
         synchronized (products) {
             products.addAll(parser.getResults());
         }

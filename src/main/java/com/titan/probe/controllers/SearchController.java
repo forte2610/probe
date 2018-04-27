@@ -21,8 +21,6 @@ public class SearchController {
     public String Search(HttpServletRequest req) {
         String keyword = "";
 
-        System.out.println(req.getParameter("query"));
-
         if (req.getParameter("query") != null) {
             keyword = req.getParameter("query").trim();
             String[] itemsKeyword = keyword.split(" ");

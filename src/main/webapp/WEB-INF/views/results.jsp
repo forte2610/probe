@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -13,12 +14,15 @@
 <body>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container bootstrap snippet">
-    <div class="row">
-        <div class="well search-result">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search">
+    <div class="row header">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <img class="img-fluid logo" src="images/coming.png" alt="">
+        </div>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <div class="input-group search-group">
+                <input type="text" class="form-control search-box" placeholder="${resultDetails.keyword}">
                 <span class="input-group-btn">
-						<button class="search-button btn btn-light btn-lg" type="button">
+						<button class="btn btn-lg search-button" type="button">
 							<i class="fa fa-search"></i>
 							Search
 						</button>
@@ -31,7 +35,7 @@
         <nav aria-label="breadcrumb" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="breadcrumb-item active">
                     Search results
@@ -41,62 +45,36 @@
                         <i class="fa fa-filter"></i> Filters
                     </a>
                 </li>
+                <li class="breadcrumb-item float-right">
+                    <a href="" class="text-muted">
+                        Found ${resultDetails.count} results.
+                    </a>
+                </li>
             </ol>
         </nav>
     </div>
 
+    <c:set var="pageListHolder" value="${resultList}" scope="session" />
+
     <hr>
 
-    <div class="row">
-        <div class="well search-result">
-            <a class="row" href="https://www.thegioididong.com/dtdd/iphone-6-32gb-gold">
-                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
-                    <img class="img-fluid" src="images/product1.png" alt="">
-                </div>
-                <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
-                    <h3>iPhone 6 32GB</h3>
-                    <p>8.490.000₫</p>
-                    <span class="badge badge-secondary">thegioididong.com</span>
-                </div>
-            </a>
+    <c:forEach var="product" items="${pageListHolder.pageList}">
+        <div class="row">
+            <div class="well search-result">
+                <a class="row" href="${product.vendorURL}">
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+                        <img class="img-fluid" src="${product.images}" alt="">
+                    </div>
+                    <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
+                        <h3>${product.name}</h3>
+                        <p class="price">${product.price}₫</p>
+                        <p>${product.description}</p>
+                        <span class="badge badge-secondary">${product.vendorURL}</span>
+                    </div>
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="well search-result">
-            <a class="row" href="https://www.thegioididong.com/dtdd/iphone-6-64gb">
-                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
-                    <img class="img-fluid" src="images/product2.png" alt="">
-                </div>
-                <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
-                    <h3>iPhone 6 64GB</h3>
-                    <p>10.490.000₫</p>
-                    <span class="badge badge-secondary">thegioididong.com</span>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="well search-result">
-            <a class="row" href="https://www.thegioididong.com/dtdd/iphone-6-128gb">
-                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
-                    <img class="img-fluid" src="images/product3.png" alt="">
-                </div>
-                <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
-                    <h3>iPhone 6 128GB</h3>
-                    <p>12.490.000₫</p>
-                    <span class="badge badge-secondary">thegioididong.com</span>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="row">
-        <button type="button" class="btn btn-secondary btn-block">
-            <i class="fa fa-refresh"></i> Load more results
-        </button>
-    </div>
+    </c:forEach>
 
 </div>
 </div>

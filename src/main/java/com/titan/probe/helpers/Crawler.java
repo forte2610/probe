@@ -57,7 +57,6 @@ public class Crawler {
 
         }
 
-        System.out.println("Total: " + productList.size());
         long end = System.currentTimeMillis();
 
         result.setKeyword(this.keyword);

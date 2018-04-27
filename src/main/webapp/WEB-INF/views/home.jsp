@@ -15,11 +15,11 @@
             <p><img src="images/top.png" title=""></p>
         </div>
         <div class="grid">
-            <p><img src="images/coming.png" title=""></p>
+            <p><img class="main_logo" src="images/coming.png" title=""></p>
 
             <form action="search" method="post">
                 <input type="text" size="30" value="What are you looking for?" onblur="if (this.value=='') this.value = 'What are you looking for?'" onfocus="if (this.value=='What are you looking for?') this.value = ''" name="query" id="query">
-                <button class="submit btn span btn-4 btn-4a icon-arrow-right"><span></span></button>
+                <button class="submit btn btn-4 btn-4a"><i class="fas fa-search"></i></button>
 
                 <div id="response"></div>
 
