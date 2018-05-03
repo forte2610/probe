@@ -12,51 +12,58 @@
 </head>
 
 <body>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="container bootstrap snippet">
+<link rel="stylesheet" type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container bootstrap">
     <div class="row header">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            <img class="img-fluid logo" src="images/coming.png" alt="">
+            <a href="/"><img class="img-fluid logo" src="images/coming.png" alt=""></a>
         </div>
         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
             <div class="input-group search-group">
                 <input type="text" class="form-control search-box" placeholder="${resultDetails.keyword}">
                 <span class="input-group-btn">
 						<button class="btn btn-lg search-button" type="button">
-							<i class="fa fa-search"></i>
-							Search
+							<i class="fa fa-search"></i> Search
 						</button>
 					</span>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <nav aria-label="breadcrumb" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="/">Home</a>
-                </li>
-                <li class="breadcrumb-item active">
-                    Search results
-                </li>
-                <li class="breadcrumb-item float-right">
-                    <a href="" class="text-muted">
-                        <i class="fa fa-filter"></i> Filters
-                    </a>
-                </li>
-                <li class="breadcrumb-item float-right">
-                    <a href="" class="text-muted">
-                        Found ${resultDetails.count} results.
-                    </a>
-                </li>
-            </ol>
+    <div class="filter-bar">
+        <nav class="navbar navbar-expand-lg filter-nav">
+            <div class="collapse navbar-collapse justify-content-between">
+                <ul class="navbar-nav mr-auto">
+                    <p class="navbar-text filter-bar-text">Filter results:</p>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Type
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Vendor
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Price range
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <p class="navbar-text filter-bar-text">Found ${resultDetails.count} results for
+                        &quot;${resultDetails.keyword}&quot;.</p>
+                </ul>
+            </div>
         </nav>
     </div>
 
-    <c:set var="pageListHolder" value="${resultList}" scope="session" />
-
-    <hr>
+    <c:set var="pageListHolder" value="${resultList}" scope="session"/>
 
     <c:forEach var="product" items="${pageListHolder.pageList}">
         <div class="row">
@@ -69,16 +76,17 @@
                         <h3>${product.name}</h3>
                         <p class="price">${product.price}₫</p>
                         <p>${product.description}</p>
-                        <span class="badge badge-secondary">${product.vendorURL}</span>
+                        <span class="badge badge-dark">${product.vendorURL}</span>
                     </div>
                 </a>
             </div>
         </div>
     </c:forEach>
 
-</div>
-</div>
+    <a href="/search?q=${resultDetails.keyword}&p=prev" class="btn btn-default">Back</a>
+    <a href="/search?q=${resultDetails.keyword}&p=next" class="btn btn-default">Next</a>
 
+</div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
 </body>

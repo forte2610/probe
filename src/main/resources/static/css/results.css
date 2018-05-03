@@ -1,36 +1,57 @@
-.html {
-    background: white;
+body {
+    background: url(../images/bg.png) #000;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    margin-top: 0;
+    background: url(../images/container.png) #000;
+    background-attachment: fixed;
+    box-shadow: 0px 4px 9px 4px rgba(0, 0, 0, 0.7);
+    border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 10px 0 10px 0 !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .header {
     width: 100%;
+    vertical-align: center;
 }
 
 .search-result .title h3 {
     margin: 0 0 15px;
-    color: #333;
+    color: #b5b5b5;
 }
 
 .search-result .title p {
     font-size: 15px;
-    color: #333;
+    color: #8d8d8d;
+}
+
+.search-result .img-fluid {
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 3px 6px 14px rgba(0, 0, 0, 0.4);
 }
 
 .well {
-    border: 0;
     padding: 15px;
     min-height: 54px;
-    background: #fff;
     border-radius: 12px;
     position: relative;
     width: 100%;
-    margin: 15px;
-    box-shadow: 2px 3px 7px 4px rgba(0,0,0,0.15);
+    margin: 15px 25px 15px 25px;
     transition: 0.5s;
+    border: 3px solid rgba(0, 0, 0, 0);
+    background: 0;
 }
 
 .well:hover {
-    box-shadow: 2px 3px 12px 9px rgba(0,0,0,0.15);
+    box-shadow: 0px 5px 20px rgba(3, 169, 244, 0.7);
+    border: 3px solid rgb(33, 150, 243);
 }
 
 .form-control {
@@ -43,17 +64,55 @@
 }
 
 .search-box {
-    border-radius: 50px;
+    border-radius: 33px 33px 33px 33px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    display: inline;
+    background: rgba(255, 255, 255, 0.1) !important;
+    outline: none;
+    box-shadow: inset 2px 3px 12px rgba(0, 0, 0, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.005) !important;
+    transition: all 0.3s !important;
+    font-size: 1.1em !important;
+    display: inline-block !important;
+}
+
+.search-box:hover {
+    border: 1px solid rgb(33, 150, 243) !important;
+    box-shadow: inset 2px 5px 20px rgba(3, 169, 244, 0.5) !important;
+}
+
+.search-box:focus {
+    border: 1px solid rgba(3, 169, 244, 0.5) !important;
 }
 
 .search-button {
-    margin-left: 10px;
-    border-radius: 50px;
+    margin-left: 20px;
+    background: #0d7ec4;
+    background: linear-gradient(to bottom, #0d7ec4 0%, #0a76b9 19%, #035b98 52%, #045a93 100%);
+    cursor: pointer;
+    transition: all 0.3s !important;
+    text-align: center;
+    vertical-align: middle;
+    outline: none;
+    box-shadow: 3px 6px 14px rgba(0, 0, 0, 0.4);
+    border-radius: 50px !important;
+    border: 3px solid #0E2955 !important;
+    color: #fff;
+    font-size: 1.1em !important;
+    display: inline-block !important;
+    margin-top: -2px !important;
 }
 
+.search-button:hover {
+    box-shadow: 0px 5px 20px rgba(3, 169, 244, 0.5) !important;
+    border: 3px solid rgb(33, 150, 243) !important;
+}
+
+.search-button:active {
+    color: #17954c !important;
+}
 
 .price {
-    font-style: oblique;
     color: #F44336 !important;
 }
 
@@ -64,8 +123,18 @@
     align-items: center;
 }
 
-.breadcrumb {
-    background: 0;
+.filter-nav {
+    background: 0 !important;
+}
+
+.filter-bar {
+    height: 60px;
+    width: 100% !important;
+    background: url(../images/nav.png) #212121 !important;
+    background-repeat: repeat-x;
+    vertical-align: middle !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 .search-group {
@@ -74,4 +143,8 @@
 
 .logo {
     display: inline-block;
+}
+
+.filter-bar-text {
+    color: #828282 !important;
 }
