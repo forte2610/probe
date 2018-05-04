@@ -68,7 +68,7 @@
     <c:forEach var="product" items="${pageListHolder.pageList}">
         <div class="row">
             <div class="well search-result">
-                <a class="row" href="${product.vendorURL}">
+                <a class="row result-item" href="${product.vendorURL}">
                     <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
                         <img class="img-fluid" src="${product.images}" alt="">
                     </div>
@@ -76,7 +76,7 @@
                         <h3>${product.name}</h3>
                         <p class="price">${product.price}₫</p>
                         <p>${product.description}</p>
-                        <span class="badge badge-dark">${product.vendorURL}</span>
+                        <p><small>${product.vendorURL}</small></p>
                     </div>
                 </a>
             </div>
