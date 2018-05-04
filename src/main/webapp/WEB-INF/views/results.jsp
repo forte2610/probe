@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 
 <head>
@@ -74,7 +75,7 @@
                     </div>
                     <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
                         <h3>${product.name}</h3>
-                        <p class="price">${product.price}₫</p>
+                        <p class="price"><fmt:formatNumber pattern="#,##0" value="${product.price}" /><sup>&#8363;</sup></p>
                         <p>${product.description}</p>
                         <p><small>${product.vendorURL}</small></p>
                     </div>
