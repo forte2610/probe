@@ -38,7 +38,7 @@ public class XANHParser implements  VendorParser {
                     // name
                     currentProduct.setName(product.select("a > h3").text());
                     // url
-                    currentProduct.setVendorURL("http://www.thegioididong.com" + product.select("a").attr("href"));
+                    currentProduct.setVendorURL("https://www.dienmayxanh.com" + product.select("a").attr("href"));
                     // image
 
                     String imageURL = product.select("a > img").attr("src");
