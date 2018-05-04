@@ -41,7 +41,7 @@ public class XANHParser implements  VendorParser {
                     currentProduct.setVendorURL("https://www.dienmayxanh.com" + product.select("a").attr("href"));
                     // image
 
-                    String imageURL = product.select("a > img").attr("src");
+                    String imageURL = product.select("a > img").attr("data-src");
                     if (!imageURL.contains("https")) {
                         imageURL = "https://" + imageURL;
                     }
