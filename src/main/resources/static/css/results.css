@@ -99,9 +99,8 @@ body {
     border-radius: 50px !important;
     border: 3px solid #0E2955 !important;
     color: #fff;
-    font-size: 1.1em !important;
+    font-size: 1.0em !important;
     display: inline-block !important;
-    margin-top: -2px !important;
 }
 
 .search-button:hover {
@@ -115,7 +114,7 @@ body {
 
 .price {
     color: #F44336 !important;
-    font-size: 1.2em; !important;
+    font-size: 1.2em !important;
 }
 
 .header {
