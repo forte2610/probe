@@ -88,22 +88,23 @@ body {
 
 .search-button {
     margin-left: 20px;
-    background: #0d7ec4;
-    background: linear-gradient(to bottom, #0d7ec4 0%, #0a76b9 19%, #035b98 52%, #045a93 100%);
+    background-color: #247edd !important;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.12) 51%, rgba(0, 0, 0, 0.04));
     cursor: pointer;
     transition: all 0.3s !important;
     text-align: center;
     vertical-align: middle;
     outline: none;
-    box-shadow: 3px 6px 14px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.4), 3px 6px 14px rgba(0, 0, 0, 0.4);
     border-radius: 50px !important;
-    border: 3px solid #0E2955 !important;
+    border: 3px solid #154c86 !important;
     color: #fff;
     font-size: 1.0em !important;
     display: inline-block !important;
 }
 
 .search-button:hover {
+    background-color: #1a74d3 !important;
     box-shadow: 0px 5px 20px rgba(3, 169, 244, 0.5) !important;
     border: 3px solid rgb(33, 150, 243) !important;
 }
