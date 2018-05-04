@@ -20,7 +20,7 @@ public class XANHParser implements  VendorParser {
 
     @Override
     public void process() {
-        String url = "https://www.thegioididong.com/tim-kiem?key=";
+        String url = "https://www.dienmayxanh.com/tag/";
 
         try {
             Document doc = Jsoup.connect(url + keyword)
