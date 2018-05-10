@@ -31,7 +31,7 @@ public class FPTParser implements VendorParser {
                 return;
             }
             for (Element product : productList) {
-                int price = parsePrice(product.getElementsByClass("fs-icpri").text());
+                int price = parsePrice(product.getElementsByClass("fs-icpri").get(0).textNodes().get(0).text());
                 if (price != -1) {
 
                     Product currentProduct = new Product();
@@ -74,7 +74,8 @@ public class FPTParser implements VendorParser {
         int result = -1;
         try {
             if (!value.trim().equals("")) {
-                String temp = value.substring(0, value.length() - 1).trim();
+                String temp = value.trim();
+                temp = temp.substring(0, value.length() - 1).trim();
                 char c = 46;
                 temp = temp.replaceAll("\\" + Character.toString(c), "");
                 result = Integer.parseInt(temp);
