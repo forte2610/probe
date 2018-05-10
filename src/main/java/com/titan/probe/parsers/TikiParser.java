@@ -9,39 +9,39 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FPTParser implements VendorParser {
+public class TikiParser implements VendorParser {
     private String keyword;
     private List<Product> resultList;
 
-    public FPTParser(String sKeyword) {
+    public TikiParser(String sKeyword) {
         this.keyword = sKeyword;
         resultList = new ArrayList<Product>();
     }
 
     @Override
     public void process() {
-        String url = "https://fptshop.com.vn/tim-kiem/";
+        String url = "https://tiki.vn/search?q=";
 
         try {
             Document doc = Jsoup.connect(url + keyword)
                     .get();
-            Elements productList = doc.getElementsByClass("fs-lpitem").select("a");
-
+            Elements productList = doc.getElementsByClass("product-item").select("a");
             if (productList.size() == 0) {
                 return;
             }
             for (Element product : productList) {
-                int price = parsePrice(product.getElementsByClass("fs-icpri").get(0).textNodes().get(0).text());
+                int price = parsePrice(product.getElementsByClass("final-price").text());
                 if (price != -1) {
 
                     Product currentProduct = new Product();
                     // name
-                    currentProduct.setName(product.attr("title"));
+                    currentProduct.setName(product.getElementsByClass("title").text());
                     // url
-                    currentProduct.setVendorURL("https://fptshop.com.vn" + product.attr("href"));
+                    currentProduct.setVendorURL(product.getElementsByClass("search-a-product-item").attr("href"));
                     // image
 
-                    String imageURL = product.getElementsByClass("fs-icimg").select("img").attr("src");
+                    currentProduct.setVendorName("Tiki");
+                    String imageURL = product.getElementsByClass("product-image").attr("src");
                     if (!imageURL.contains("https")) {
                         imageURL = "https://" + imageURL;
                     }
@@ -74,8 +74,7 @@ public class FPTParser implements VendorParser {
         int result = -1;
         try {
             if (!value.trim().equals("")) {
-                String temp = value.trim();
-                temp = temp.substring(0, temp.length() - 1).trim();
+                String temp = value.substring(0, value.length() - 1).trim();
                 char c = 46;
                 temp = temp.replaceAll("\\" + Character.toString(c), "");
                 result = Integer.parseInt(temp);
