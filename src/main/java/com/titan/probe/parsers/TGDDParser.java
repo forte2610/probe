@@ -50,7 +50,17 @@ public class TGDDParser implements VendorParser {
                     // price
                     currentProduct.setPrice(price);
                     // type
-                    currentProduct.setType(product.select("a > h3").text());
+                    String productURL = currentProduct.getVendorURL().substring(29, 33);
+                    switch (productURL) {
+                        case "dtdd":
+                            currentProduct.setType("Smartphone");
+                            break;
+                        case "laptop":
+                            currentProduct.setType("Laptop");
+                            break;
+                        default:
+                            currentProduct.setType("Null");
+                    }
                     // info
                     String productInfo = product.select("figure > span").text();
 

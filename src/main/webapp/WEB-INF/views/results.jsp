@@ -10,11 +10,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="css/results.css" rel="stylesheet" type="text/css"></link>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR" crossorigin="anonymous"></script>
 </head>
 
 <body>
-<link rel="stylesheet" type="text/css"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container bootstrap">
     <div class="row header">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -78,6 +77,17 @@
                         <p class="price"><fmt:formatNumber pattern="#,##0" value="${product.price}" /><sup>&#8363;</sup></p>
                         <p>${product.description}</p>
                         <p><small>${product.vendorURL}</small></p>
+                        <c:choose>
+                            <c:when test="${product.type == 'Smartphone'}">
+                                <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i> Smartphone</span>
+                            </c:when>
+                            <c:when test="${product.type == 'Laptop'}">
+                                <span class="badge badge-primary"><i class="fas fa-laptop"></i> Laptop</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="badge badge-primary">No type specified</span><small><i class="fas fa-question-circle"></i></small>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </a>
             </div>
