@@ -1,5 +1,8 @@
 package com.titan.probe.parsers;
 
+import com.gargoylesoftware.htmlunit.*;
+import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.titan.probe.models.Product;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,11 +23,32 @@ public class TGDDParser implements VendorParser {
 
     @Override
     public void process() {
+        final WebClient webClient = new WebClient(BrowserVersion.BEST_SUPPORTED);
+        webClient.getOptions().setJavaScriptEnabled(true);
+        webClient.getOptions().setThrowExceptionOnScriptError(false);
+        webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
+        webClient.getOptions().setCssEnabled(false);
+        webClient.setAjaxController(new NicelyResynchronizingAjaxController());
+        webClient.getOptions().setTimeout(10000);
+
         String url = "https://www.thegioididong.com/tim-kiem?key=";
 
         try {
-            Document doc = Jsoup.connect(url + keyword)
-                    .get();
+            HtmlPage vendorPage = webClient.getPage(url + keyword);
+            Document doc;
+
+            // handle AJAX lazy loading
+            while (true) {
+                try {
+                    HtmlAnchor anchor = vendorPage.getAnchorByHref("javascript:ShowMoreProductResult();");
+                    anchor.click();
+                }
+                catch (ElementNotFoundException anchorNotFound) {
+                    break;
+                }
+            }
+
+            doc = Jsoup.parse(vendorPage.asXml());
             Elements productList = doc.getElementsByClass("listsearch").select("li");
 
             if (productList.size() == 0) {
@@ -53,7 +77,7 @@ public class TGDDParser implements VendorParser {
                     String productURL = currentProduct.getVendorURL().substring(29, 33);
                     switch (productURL) {
                         case "dtdd":
-                            currentProduct.setType("Smartphone");
+                            currentProduct.setType("Phone");
                             break;
                         case "laptop":
                             currentProduct.setType("Laptop");
