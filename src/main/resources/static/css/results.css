@@ -150,6 +150,7 @@ body {
 }
 
 .header-form {
+    padding-top: 15px;
     vertical-align: middle; !important;
 }
 

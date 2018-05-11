@@ -35,7 +35,10 @@
 
     <div class="filter-bar">
         <nav class="navbar navbar-expand-lg filter-nav">
-            <div class="collapse navbar-collapse justify-content-between">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#filter-bar" aria-controls="filter-bar" aria-expanded="false" aria-label="Advanced tools">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="filter-bar">
                 <ul class="navbar-nav mr-auto">
                     <p class="navbar-text filter-bar-text">Filter results:</p>
                     <li class="nav-item dropdown">
