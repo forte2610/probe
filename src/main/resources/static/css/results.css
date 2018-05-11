@@ -149,6 +149,10 @@ body {
     display: inline-block;
 }
 
+.header-form {
+    vertical-align: middle; !important;
+}
+
 .logo {
     margin-left: 10px;
     display: inline-block;

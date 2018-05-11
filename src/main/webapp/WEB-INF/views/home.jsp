@@ -19,7 +19,7 @@
         <div class="grid">
             <p><img class="main_logo" src="images/coming.png" title=""></p>
 
-            <form action="search?a=source" method="get">
+            <form action="search" method="get">
                 <input type="text" size="30" value="What are you looking for?"
                        onblur="if (this.value=='') this.value = 'What are you looking for?'"
                        onfocus="if (this.value=='What are you looking for?') this.value = ''" name="q" id="q">
