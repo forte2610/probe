@@ -20,14 +20,16 @@
             <a href="/"><img class="img-fluid logo" src="images/coming.png" alt=""></a>
         </div>
         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-            <div class="input-group search-group">
-                <input type="text" class="form-control search-box" placeholder="${resultDetails.keyword}">
-                <span class="input-group-btn">
-						<button class="btn btn-lg search-button" type="button">
+            <form class="header-form" action="search" method="get">
+                <div class="input-group search-group">
+                    <input type="text" class="form-control search-box" name="q" id="q" placeholder="${resultDetails.keyword}">
+                    <span class="input-group-btn">
+						<button type="submit" class="btn btn-lg search-button">
 							<i class="fa fa-search"></i> Search
 						</button>
 					</span>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 
