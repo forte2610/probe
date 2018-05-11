@@ -28,7 +28,6 @@ public class TGDDParser implements VendorParser {
         webClient.getOptions().setThrowExceptionOnScriptError(false);
         webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
         webClient.getOptions().setCssEnabled(false);
-        webClient.setAjaxController(new NicelyResynchronizingAjaxController());
         webClient.getOptions().setTimeout(10000);
 
         String url = "https://www.thegioididong.com/tim-kiem?key=";
@@ -41,6 +40,7 @@ public class TGDDParser implements VendorParser {
             while (true) {
                 try {
                     HtmlAnchor anchor = vendorPage.getAnchorByHref("javascript:ShowMoreProductResult();");
+                    webClient.waitForBackgroundJavaScript(10000);
                     anchor.click();
                 }
                 catch (ElementNotFoundException anchorNotFound) {
