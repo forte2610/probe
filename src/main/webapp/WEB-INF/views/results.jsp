@@ -78,14 +78,14 @@
                         <p>${product.description}</p>
                         <p><small>${product.vendorURL}</small></p>
                         <c:choose>
-                            <c:when test="${product.type == 'Smartphone'}">
-                                <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i> Smartphone</span>
+                            <c:when test="${product.type == 'Phone'}">
+                                <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Mobile phone</span>
                             </c:when>
                             <c:when test="${product.type == 'Laptop'}">
-                                <span class="badge badge-primary"><i class="fas fa-laptop"></i> Laptop</span>
+                                <span class="badge badge-primary"><i class="fas fa-laptop"></i>&nbsp;&nbsp;Laptop</span>
                             </c:when>
                             <c:otherwise>
-                                <span class="badge badge-primary">No type specified</span><small><i class="fas fa-question-circle"></i></small>
+                                <span class="badge badge-primary">No type specified</span>
                             </c:otherwise>
                         </c:choose>
                     </div>
