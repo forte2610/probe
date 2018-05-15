@@ -58,7 +58,15 @@ public class VendorController {
         modelAndView.setViewName("vendor_details");
         modelAndView.addObject("vendor", currentVendor);
         modelAndView.addObject("reviews", allReviews);
-        modelAndView.addObject("review_count", allReviews.size());
+        double reviewScore = 0;
+        int reviewCount = allReviews.size();
+        for (int i = 0; i < reviewCount; i++) {
+            reviewScore += allReviews.get(i).getScore();
+        }
+        if (reviewCount > 0) reviewScore = Math.round((reviewScore / reviewCount) * 2) / 2.0;
+        else reviewScore = 2.5;
+        modelAndView.addObject("review_score", reviewScore);
+        modelAndView.addObject("review_count", reviewCount);
         return modelAndView;
     }
 
