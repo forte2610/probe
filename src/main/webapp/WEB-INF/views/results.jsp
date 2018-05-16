@@ -52,12 +52,28 @@
                            aria-haspopup="true" aria-expanded="false">
                             Vendor
                         </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" href="?vendor=dienmayxanh">Điện máy xanh</a>
+                            <a class="dropdown-item" href="#">FPT</a>
+                            <a class="dropdown-item" href="#">Thế giới di động</a>
+                            <a class="dropdown-item" href="#">Tiki</a>
+                            <a class="dropdown-item" href="#">Viettel</a>
+
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             Price range
                         </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">< 100,000đ</a>
+                            <a class="dropdown-item" href="#">100,000đ - 1,000,000đ</a>
+                            <a class="dropdown-item" href="#">1,000,000đ - 10,000,000đ</a>
+                            <a class="dropdown-item" href="#">> 10,000,000đ</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Custom price</a>
+                        </div>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">

@@ -20,7 +20,7 @@ public class TikiParser implements VendorParser {
 
     @Override
     public void process() {
-        String url = "https://tiki.vn/search?q=";
+        String url = "https://tiki.vn/dien-thoai-smartphone/c1795?q=";
 
         try {
             Document doc = Jsoup.connect(url + keyword)
@@ -29,7 +29,10 @@ public class TikiParser implements VendorParser {
             if (productList.size() == 0) {
                 return;
             }
+            int index=0;
             for (Element product : productList) {
+                index++;
+                if (index == 6) return;
                 int price = parsePrice(product.getElementsByClass("final-price").text());
                 if (price != -1) {
 

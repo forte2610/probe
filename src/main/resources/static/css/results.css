@@ -3,7 +3,6 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
-
 .container {
     margin-top: 0;
     background: url(../images/container.png) #000;
