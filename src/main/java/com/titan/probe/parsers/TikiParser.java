@@ -50,13 +50,18 @@ public class TikiParser implements VendorParser {
                     // price
                     currentProduct.setPrice(price);
                     // type
-                    currentProduct.setType(product.select("a > h3").text());
+                    if (currentProduct.getName().substring(0, 10).equals("Điện thoại") || currentProduct.getName().substring(0, 10).equals("Điện Thoại"))
+                        currentProduct.setType("Phone");
+                    else if (currentProduct.getName().substring(0, 9).equals("Laptop") || currentProduct.getName().contains("Macbook"))
+                        currentProduct.setType("Laptop");
+                    else currentProduct.setType("Null");
                     // info
                     String productInfo = product.select("figure > span").text();
 
                     currentProduct.setDescription(productInfo);
 
-                    if (!isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
+                    if (!(currentProduct.getType().equals("Null")) && !isDuplicate(currentProduct.getVendorURL()))
+                        resultList.add(currentProduct);
                 }
 
             }

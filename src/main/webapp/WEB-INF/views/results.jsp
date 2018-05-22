@@ -41,19 +41,19 @@
             <div class="collapse navbar-collapse justify-content-between" id="filter-bar">
                 <ul class="navbar-nav mr-auto">
                     <p class="navbar-text filter-bar-text">Filter results:</p>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown filter-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             Type
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown filter-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             Vendor
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown filter-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             Price range

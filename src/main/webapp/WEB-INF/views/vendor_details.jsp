@@ -35,9 +35,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/vendors"><i class="fas fa-chevron-circle-left"></i> All vendors</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"><i class="fas fa-home"></i> Home page</a>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -56,8 +53,7 @@
             <p><i class="content-icon fas fa-phone"></i> 028.386.33333</p>
             <p><i class="content-icon fas fa-envelope"></i> cskh@thegioididong.com</p>
             <p class="section-title">REPUTATION</p>
-            <p><i class="content-icon fas fa-star"></i> ${review_score}</p>
-            <p><i class="content-icon fas fa-comments"></i> ${review_count}</p>
+            <p><i class="content-icon fas fa-star"></i> ${review_score} (based on ${review_count} reviews)</p>
             <hr class="separator">
             <p class="section-title">USER REVIEWS</p>
         </div>
@@ -69,35 +65,37 @@
                 <div class="col-md-12">
                     <p><b>${review.author.username}</b></p>
                     <fmt:parseDate value="${review.timestamp}" var="parsedTimestamp" pattern="yyyy-MM-dd HH:mm:ss"/>
-                    <c:choose>
-                        <c:when test="${(review.score) % 2 == 0}">
-                            <c:forEach var="i" begin="0" end="${review.score}">
-                                <c:if test="${i > 0}">
-                                    <i class="fas fa-star"></i>
-                                </c:if>
-                            </c:forEach>
-                            <c:forEach var="i" begin="0" end="${5 - review.score}">
-                                <c:if test="${i > 0}">
-                                    <i class="far fa-star"></i>
-                                </c:if>
-                            </c:forEach>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="i" begin="0" end="${review.score - 0.5}">
-                                <c:if test="${i > 0}">
-                                    <i class="fas fa-star"></i>
-                                </c:if>
-                            </c:forEach>
-                            <i class="fas fa-star-half"></i>
-                            <c:forEach var="i" begin="0" end="${4.5 - review.score}">
-                                <c:if test="${i > 0}">
-                                    <i class="far fa-star"></i>
-                                </c:if>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                    <fmt:formatDate value="${parsedTimestamp}"
-                                    pattern="MMM dd, yyyy"/>
+                    <small>
+                        <c:choose>
+                            <c:when test="${(review.score) % 2 == 0}">
+                                <c:forEach var="i" begin="0" end="${review.score}">
+                                    <c:if test="${i > 0}">
+                                        <i class="fas fa-star"></i>
+                                    </c:if>
+                                </c:forEach>
+                                <c:forEach var="i" begin="0" end="${5 - review.score}">
+                                    <c:if test="${i > 0}">
+                                        <i class="far fa-star"></i>
+                                    </c:if>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="i" begin="0" end="${review.score - 0.5}">
+                                    <c:if test="${i > 0}">
+                                        <i class="fas fa-star"></i>
+                                    </c:if>
+                                </c:forEach>
+                                <i class="fas fa-star-half"></i>
+                                <c:forEach var="i" begin="0" end="${4.5 - review.score}">
+                                    <c:if test="${i > 0}">
+                                        <i class="far fa-star"></i>
+                                    </c:if>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                        <fmt:formatDate value="${parsedTimestamp}"
+                                        pattern="MMM dd, yyyy"/>
+                    </small>
                     <p>${review.content}</p>
                 </div>
             </div>

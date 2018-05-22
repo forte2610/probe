@@ -175,3 +175,18 @@ body {
 .result-item:hover {
     text-decoration: none; !important;
 }
+
+#filter-bar {
+    margin-top: 0px !important;
+    height: 60px !important;
+}
+
+.filter-dropdown {
+    height: 100% !important;
+}
+
+.filter-dropdown:hover {
+    background-image: url("../images/nav_link_hover.png") !important;
+    background-size: cover !important;
+    color: white !important;
+}

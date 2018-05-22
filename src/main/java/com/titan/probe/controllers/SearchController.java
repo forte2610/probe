@@ -43,6 +43,7 @@ public class SearchController {
             pagedProductList.setPageSize(10);
             req.getSession().setAttribute("resultList", pagedProductList);
             req.getSession().setAttribute("resultDetails", details);
+            System.out.println("Finished after " + details.getTimeElapsed() + " milliseconds.");
         }
         else if (page.equals("next")) {
             PagedListHolder<Product> pagedProductList = (PagedListHolder<Product>)req.getSession().getAttribute("resultList");

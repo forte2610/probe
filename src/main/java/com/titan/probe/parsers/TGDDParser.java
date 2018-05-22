@@ -23,13 +23,21 @@ public class TGDDParser implements VendorParser {
 
     @Override
     public void process() {
-        final WebClient webClient = new WebClient(BrowserVersion.BEST_SUPPORTED);
+        final WebClient webClient = new WebClient(BrowserVersion.CHROME);
         webClient.getOptions().setJavaScriptEnabled(true);
         webClient.getOptions().setThrowExceptionOnScriptError(false);
         webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
         webClient.getOptions().setCssEnabled(false);
-        webClient.getOptions().setTimeout(10000);
+        webClient.getOptions().setTimeout(5000);
+        webClient.setAjaxController(new AjaxController(){
+            @Override
+            public boolean processSynchron(HtmlPage page, WebRequest request, boolean async)
+            {
+                return true;
+            }
+        });
 
+        int count = 0;
         String url = "https://www.thegioididong.com/tim-kiem?key=";
 
         try {
@@ -40,7 +48,6 @@ public class TGDDParser implements VendorParser {
             while (true) {
                 try {
                     HtmlAnchor anchor = vendorPage.getAnchorByHref("javascript:ShowMoreProductResult();");
-                    webClient.waitForBackgroundJavaScript(10000);
                     anchor.click();
                 }
                 catch (ElementNotFoundException anchorNotFound) {
@@ -74,23 +81,15 @@ public class TGDDParser implements VendorParser {
                     // price
                     currentProduct.setPrice(price);
                     // type
-                    String productURL = currentProduct.getVendorURL().substring(29, 33);
-                    switch (productURL) {
-                        case "dtdd":
-                            currentProduct.setType("Phone");
-                            break;
-                        case "laptop":
-                            currentProduct.setType("Laptop");
-                            break;
-                        default:
-                            currentProduct.setType("Null");
-                    }
+                    if (currentProduct.getVendorURL().substring(29, 33).equals("dtdd")) currentProduct.setType("Phone");
+                    else if (currentProduct.getVendorURL().substring(29, 35).equals("laptop")) currentProduct.setType("Laptop");
+                    else currentProduct.setType("Null");
                     // info
                     String productInfo = product.select("figure > span").text();
 
                     currentProduct.setDescription(productInfo);
 
-                    if (!isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
+                    if (!(currentProduct.getType().equals("Null")) && !isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
                 }
 
             }
