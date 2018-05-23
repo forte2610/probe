@@ -89,33 +89,67 @@
 
     <c:set var="pageListHolder" value="${resultList}" scope="session"/>
 
-    <c:forEach var="product" items="${pageListHolder.pageList}">
-        <div class="row">
-            <div class="well search-result">
-                <a class="row result-item" href="${product.vendorURL}">
-                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
-                        <img class="img-fluid" src="${product.images}" alt="">
+    <c:forEach var="product" items="${pageListHolder.pageList}" varStatus="loop">
+        <c:choose>
+            <c:when test = "${currentPage == 0 && loop.index == 0}">
+                <div class="row">
+                    <div class="well search-result cheapest">
+                        <a class="row result-item" href="${product.vendorURL}">
+                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+                                <img class="img-fluid" src="${product.images}" alt="">
+                            </div>
+                            <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
+                                <h3>${product.name}</h3>
+                                <p class="price"><fmt:formatNumber pattern="#,##0" value="${product.price}" /><sup>&#8363;</sup></p>
+                                <p>${product.description}</p>
+                                <p><small>${product.vendorURL}</small></p>
+                                <c:choose>
+                                    <c:when test="${product.type == 'Phone'}">
+                                        <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Phone</span>
+                                    </c:when>
+                                    <c:when test="${product.type == 'Laptop'}">
+                                        <span class="badge badge-primary"><i class="fas fa-laptop"></i>&nbsp;&nbsp;Laptop</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="badge badge-primary">No category specified</span>
+                                    </c:otherwise>
+                                </c:choose>
+                                &nbsp;
+                                <span class="badge badge-danger"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Cheapest</span>
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
-                        <h3>${product.name}</h3>
-                        <p class="price"><fmt:formatNumber pattern="#,##0" value="${product.price}" /><sup>&#8363;</sup></p>
-                        <p>${product.description}</p>
-                        <p><small>${product.vendorURL}</small></p>
-                        <c:choose>
-                            <c:when test="${product.type == 'Phone'}">
-                                <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Phone</span>
-                            </c:when>
-                            <c:when test="${product.type == 'Laptop'}">
-                                <span class="badge badge-primary"><i class="fas fa-laptop"></i>&nbsp;&nbsp;Laptop</span>
-                            </c:when>
-                            <c:otherwise>
-                                <span class="badge badge-primary">No type specified</span>
-                            </c:otherwise>
-                        </c:choose>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="row">
+                    <div class="well search-result">
+                        <a class="row result-item" href="${product.vendorURL}">
+                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+                                <img class="img-fluid" src="${product.images}" alt="">
+                            </div>
+                            <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
+                                <h3>${product.name}</h3>
+                                <p class="price"><fmt:formatNumber pattern="#,##0" value="${product.price}" /><sup>&#8363;</sup></p>
+                                <p>${product.description}</p>
+                                <p><small>${product.vendorURL}</small></p>
+                                <c:choose>
+                                    <c:when test="${product.type == 'Phone'}">
+                                        <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Phone</span>
+                                    </c:when>
+                                    <c:when test="${product.type == 'Laptop'}">
+                                        <span class="badge badge-primary"><i class="fas fa-laptop"></i>&nbsp;&nbsp;Laptop</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="badge badge-primary">No type specified</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-        </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </c:forEach>
 
     <div class="helios-pagination">
