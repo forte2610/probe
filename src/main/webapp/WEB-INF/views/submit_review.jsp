@@ -12,36 +12,7 @@
 <body>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <form:form action="/submit-review/${vendorid}" method="post"
-                       modelAttribute="newReview" autocomplete="off"  class="form-horizontal">
-                <h2>Submit review</h2>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label for="score">Give this vendor a score:</label>
-                        <form:input type="number" name="score" path="score" value="2.5"
-                                    min="1" max="5" step="0.5" class="form-control" />
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label for="content">Leave a comment:</label>
-                        <form:textarea type="text" rows="5" name="content" path="content" placeholder="Content"
-                                    class="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Submit review</button>
-                    </div>
-                </div>
-
-            </form:form>
-        </div>
-    </div>
 </div>
 
 </body>

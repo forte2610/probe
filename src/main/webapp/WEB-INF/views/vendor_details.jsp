@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 
 <head>
@@ -55,7 +56,51 @@
             <p><i class="content-icon fas fa-envelope"></i> cskh@thegioididong.com</p>
             <p class="section-title">REPUTATION</p>
             <p><i class="content-icon fas fa-star"></i> ${review_score} (based on ${review_count} reviews)</p>
-            <hr class="separator">
+        </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="row vendor-info">
+        <div class="col-md-12">
+            <p class="section-title">RATE THIS VENDOR</p>
+        </div>
+    </div>
+
+    <div class="row review-area">
+        <div class="col-md-2 offset-md-2 userinfo">
+            <div class="row"><img class="img-fluid" src="../images/user_icon.png"></div>
+            <div class="row login-name">Logged in as&nbsp;<b>test</b></div>
+        </div>
+        <div class="col-md-6">
+            <form:form action="/submit-review/${vendor.id}" method="post"
+                       modelAttribute="newReview" autocomplete="off" class="form-horizontal">
+                <div class="form-group">
+                    <label class="helios-label" for="score">Give this vendor a score:</label>
+                    <form:input type="number" name="score" path="score" value="2.5"
+                                min="1" max="5" step="0.5" class="form-control helios-textbox"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="helios-label" for="content">Leave a comment:</label>
+                    <form:textarea type="text" rows="5" name="content" path="content" placeholder="Content"
+                                   class="form-control helios-textbox"/>
+                </div>
+
+                <div class="form-group">
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-primary btn-block review-button">Submit review</button>
+                    </div>
+                </div>
+
+            </form:form>
+        </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="row vendor-info">
+        <div class="col-md-12">
             <p class="section-title">USER REVIEWS</p>
         </div>
     </div>
@@ -87,13 +132,9 @@
                                     </c:if>
                                 </c:forEach>
                                 <i class="fas fa-star-half"></i>
-                                <c:forEach var="i" begin="0" end="${4.5 - review.score}">
-                                    <c:if test="${i > 0}">
-                                        <i class="far fa-star"></i>
-                                    </c:if>
-                                </c:forEach>
                             </c:otherwise>
                         </c:choose>
+                        &nbsp;&nbsp;
                         <fmt:formatDate value="${parsedTimestamp}"
                                         pattern="MMM dd, yyyy"/>
                     </small>

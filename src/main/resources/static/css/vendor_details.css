@@ -132,4 +132,79 @@ body {
     margin-right: 10px !important;
 }
 
+.review-button {
+    margin-left: 6px !important;
+    padding: 0 10px;
+    min-width: 17px;
+    line-height: 27px;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #d4d4d4 !important;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.9) !important;
+    border-radius: 3px;
+    text-shadow: 0 1px black;
+    background-clip: padding-box;
+    background-color: #26272c !important;
+    background: linear-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), inset 0 1px rgba(255, 255, 255, 0.04), inset 0 -1px rgba(0, 0, 0, .15), 0 1px 1px rgba(0, 0, 0, .1) !important;
+    transition: 0.1s ease-out;
+    display: inline-block !important;
+}
 
+.review-button:hover {
+    background-color: #333 !important;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.review-button:active {
+    text-shadow: 0 -1px black;
+    background-color: #1c1c1c !important;
+    background: rgba(255, 255, 255, 0.01);
+    border-color: black rgba(0, 0, 0, 0.65) rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.05), inset 0 2px 2px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.helios-textbox {
+    border-radius: 6px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    display: inline;
+    background: rgba(255, 255, 255, 0.1) !important;
+    outline: none;
+    box-shadow: inset 2px 3px 12px rgba(0, 0, 0, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.005) !important;
+    transition: all 0.3s !important;
+    font-size: 1.1em !important;
+    display: inline-block !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.helios-textbox:hover {
+    border: 1px solid rgb(33, 150, 243) !important;
+    box-shadow: inset 2px 5px 20px rgba(3, 169, 244, 0.5) !important;
+}
+
+.helios-textbox:focus {
+    border: 1px solid rgba(3, 169, 244, 0.5) !important;
+}
+
+.review-area {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.login-name {
+    margin-top: 20px;
+}
+
+.userinfo {
+    padding: 10px;
+}
+
+.helios-label {
+    font-size: 0.9em;
+}

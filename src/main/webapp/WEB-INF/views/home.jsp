@@ -20,7 +20,7 @@
             <p><img class="main_logo" src="images/coming.png" title=""></p>
 
             <form action="search" method="get">
-                <input type="text" size="30" name="q" id="q">
+                <input type="text" placeholder="What are you looking for?" size="30" name="q" id="q">
                 <button class="submit btn btn-4 btn-4a"><i class="fas fa-search"></i></button>
 
                 <div id="response"></div>
