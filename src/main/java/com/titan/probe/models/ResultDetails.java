@@ -1,3 +1,11 @@
+/*
+ *  ResultDetails
+ *
+ *  Author: 1412093
+ *
+ *  Wrapper for search operation details
+ */
+
 package com.titan.probe.models;
 
 public class ResultDetails {

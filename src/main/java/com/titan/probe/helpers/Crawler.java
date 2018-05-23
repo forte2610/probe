@@ -1,3 +1,11 @@
+/*
+ *  Crawler
+ *
+ *  Author: 1412093
+ *
+ *  Scrapes through vendor pages to find products matching the user's keyword
+ */
+
 package com.titan.probe.helpers;
 
 import com.titan.probe.models.Product;

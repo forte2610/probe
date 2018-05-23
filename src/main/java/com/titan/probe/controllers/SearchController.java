@@ -1,3 +1,11 @@
+/*
+ *  SearchController
+ *
+ *  Author: 1412093
+ *
+ *  This controller handles the system's primary operation: search
+ */
+
 package com.titan.probe.controllers;
 
 import com.titan.probe.helpers.Crawler;

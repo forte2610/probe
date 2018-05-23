@@ -1,3 +1,11 @@
+/*
+ *  Review
+ *
+ *  Author: 1412093
+ *
+ *  The entity class for reviews
+ */
+
 package com.titan.probe.models;
 
 import javax.persistence.*;

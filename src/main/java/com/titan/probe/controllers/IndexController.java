@@ -1,3 +1,11 @@
+/*
+ *  IndexController
+ *
+ *  Author: 1412093
+ *
+ *  This controller handles URLs related to the home page
+ */
+
 package com.titan.probe.controllers;
 
 import org.springframework.stereotype.Controller;

@@ -1,3 +1,11 @@
+/*
+ *  ProductComparator
+ *
+ *  Author: 1412093
+ *
+ *  Comparator to determine which product is cheaper
+ */
+
 package com.titan.probe.helpers;
 
 import com.titan.probe.models.Product;

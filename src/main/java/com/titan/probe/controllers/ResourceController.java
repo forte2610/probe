@@ -1,3 +1,11 @@
+/*
+ *  ResourceController
+ *
+ *  Author: 1412093
+ *
+ *  This controller handles the return of static resources, such as images, to the browser
+ */
+
 package com.titan.probe.controllers;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;

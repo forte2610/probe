@@ -1,3 +1,11 @@
+/*
+ *  CrawlerRunnable
+ *
+ *  Author: 1412093
+ *
+ *  A Runnable for multi-threaded scraping
+ */
+
 package com.titan.probe.helpers;
 
 import com.titan.probe.models.Product;

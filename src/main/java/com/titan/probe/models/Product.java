@@ -1,3 +1,11 @@
+/*
+ *  Product
+ *
+ *  Author: 1412093
+ *
+ *  The entity class for products
+ */
+
 package com.titan.probe.models;
 
 public class Product {

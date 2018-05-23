@@ -1,3 +1,11 @@
+/*
+ *  ResultObject
+ *
+ *  Author: 1412093
+ *
+ *  A collection of results and all related information returned by the crawler
+ */
+
 package com.titan.probe.models;
 
 import java.util.ArrayList;

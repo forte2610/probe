@@ -1,3 +1,11 @@
+/*
+ *  VendorController
+ *
+ *  Author: 1412093
+ *
+ *  This controller handles URLs related vendor oriented functionality
+ */
+
 package com.titan.probe.controllers;
 
 import com.titan.probe.models.Review;

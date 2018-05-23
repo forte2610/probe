@@ -1,3 +1,11 @@
+/*
+ *  Vendor
+ *
+ *  Author: 1412093
+ *
+ *  The entity class for vendors
+ */
+
 package com.titan.probe.models;
 
 import javax.persistence.*;

@@ -1,3 +1,11 @@
+/*
+ *  UserController
+ *
+ *  Author: 1412093
+ *
+ *  This controller handles URLs related to user oriented functionality
+ */
+
 package com.titan.probe.controllers;
 
 import com.titan.probe.models.User;
