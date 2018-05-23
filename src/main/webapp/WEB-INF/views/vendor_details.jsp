@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>${vendor.name} > Details</title>
+    <title>Vendor details of ${vendor.name}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="../css/vendor_details.css" rel="stylesheet" type="text/css"></link>
@@ -35,6 +35,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/vendors"><i class="fas fa-chevron-circle-left"></i> All vendors</a>
                     </li>
+                    <p class="navbar-text filter-bar-text"> / ${vendor.name}</p>
                 </ul>
             </div>
         </nav>

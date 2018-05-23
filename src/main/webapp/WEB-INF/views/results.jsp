@@ -44,20 +44,39 @@
                     <li class="nav-item dropdown filter-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Type
+                            Product category
                         </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item"href="?vendor=dienmayxanh">Phones</a>
+                            <a class="dropdown-item" href="#">Laptops</a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown filter-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             Vendor
                         </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="?vendor=dienmayxanh">Điện máy xanh</a>
+                            <a class="dropdown-item" href="#">FPT</a>
+                            <a class="dropdown-item" href="#">Thế giới di động</a>
+                            <a class="dropdown-item" href="#">Tiki</a>
+                            <a class="dropdown-item" href="#">Viettel</a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown filter-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             Price range
                         </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">< 100,000đ</a>
+                            <a class="dropdown-item" href="#">100,000đ - 1,000,000đ</a>
+                            <a class="dropdown-item" href="#">1,000,000đ - 10,000,000đ</a>
+                            <a class="dropdown-item" href="#">> 10,000,000đ</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Custom price</a>
+                        </div>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -84,7 +103,7 @@
                         <p><small>${product.vendorURL}</small></p>
                         <c:choose>
                             <c:when test="${product.type == 'Phone'}">
-                                <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Mobile phone</span>
+                                <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Phone</span>
                             </c:when>
                             <c:when test="${product.type == 'Laptop'}">
                                 <span class="badge badge-primary"><i class="fas fa-laptop"></i>&nbsp;&nbsp;Laptop</span>
@@ -99,8 +118,22 @@
         </div>
     </c:forEach>
 
-    <a href="/search?q=${resultDetails.keyword}&p=prev" class="btn btn-default">Back</a>
-    <a href="/search?q=${resultDetails.keyword}&p=next" class="btn btn-default">Next</a>
+    <div class="helios-pagination">
+        <c:choose>
+            <c:when test="${pageListHolder.firstPage}"><div class="page-link page-link-active">&lt;</div></c:when>
+            <c:otherwise><a class="page-link" href="/search?q=${resultDetails.keyword}&p=prev">&lt;</a></c:otherwise>
+        </c:choose>
+        <c:forEach begin="0" end="${pageListHolder.pageCount-1}" varStatus="loop">
+            <c:choose>
+                <c:when test="${loop.index == pageListHolder.page}"><div class="page-link page-link-active">${loop.index+1}</div></c:when>
+                <c:otherwise><a class="page-link" href="/search?q=${resultDetails.keyword}&p=${loop.index}">${loop.index+1}</a></c:otherwise>
+            </c:choose>
+        </c:forEach>
+        <c:choose>
+            <c:when test="${pageListHolder.lastPage}">&gt;</c:when>
+            <c:otherwise><a class="page-link" href="/search?q=${resultDetails.keyword}&p=next">&gt;</a></c:otherwise>
+        </c:choose>
+    </div>
 
 </div>
 

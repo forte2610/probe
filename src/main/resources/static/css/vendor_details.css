@@ -121,7 +121,7 @@ body {
 .navigation-bar {
     height: 60px;
     width: 100% !important;
-    background: url(../images/nav.png) #212121 !important;
+    background: url("../images/nav.png") #212121 !important;
     background-repeat: repeat-x;
     vertical-align: middle !important;
     margin-left: 0px !important;

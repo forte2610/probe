@@ -1,54 +1,25 @@
 body {
-    background: url(../images/bg.png) #000;
-    background-size: cover;
-    background-attachment: fixed;
+    background: url("../images/bg.png") fixed;
+    background-size: cover !important;
 }
 
 .main-content {
-    margin: 30px;
+    background: url("../images/container.png") fixed;
+    box-shadow: 0px 4px 9px 4px rgba(0, 0, 0, 0.7);
+    border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    margin: 0px;
     padding: 10px 0 10px 0 !important;
+    color: rgba(255, 255, 255, 0.7);
 }
 
-.header {
-    width: 100%;
-    vertical-align: center;
-}
-
-.search-result .title h3 {
-    margin: 0 0 15px;
-    color: #b5b5b5;
-}
-
-.search-result .title p {
-    font-size: 15px;
-    color: #8d8d8d;
-}
-
-.search-result .img-fluid {
+.vendor-logo {
+    display: inline-block;
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.4), 3px 6px 14px rgba(0, 0, 0, 0.4);
     padding: 6px;
-    background-color: rgba(255, 255, 255, 0.4);
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.12) 51%, rgba(0, 0, 0, 0.04));
-}
-
-.well {
-    padding: 15px;
-    min-height: 54px;
-    border-radius: 12px;
-    position: relative;
-    width: 100%;
-    margin: 15px 25px 15px 25px;
-    transition: 0.5s;
-    border: 3px solid rgba(0, 0, 0, 0);
-    background: 0;
-}
-
-.well:hover {
-    box-shadow: 0px 5px 20px rgba(3, 169, 244, 0.7);
-    border: 3px solid rgb(33, 150, 243);
-    background: rgba(3, 169, 244, 0.1) !important;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .form-control {
@@ -60,91 +31,8 @@ body {
     position: relative;
 }
 
-.search-box {
-    border-radius: 33px 33px 33px 33px !important;
-    color: rgba(255, 255, 255, 0.7) !important;
+.btn {
     display: inline;
-    background: rgba(255, 255, 255, 0.1) !important;
-    outline: none;
-    box-shadow: inset 2px 3px 12px rgba(0, 0, 0, 0.7) !important;
-    border: 1px solid rgba(255, 255, 255, 0.005) !important;
-    transition: all 0.3s !important;
-    font-size: 1.1em !important;
-    display: inline-block !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-}
-
-.search-box:hover {
-    border: 1px solid rgb(33, 150, 243) !important;
-    box-shadow: inset 2px 5px 20px rgba(3, 169, 244, 0.5) !important;
-}
-
-.search-box:focus {
-    border: 1px solid rgba(3, 169, 244, 0.5) !important;
-}
-
-.search-button {
-    margin-left: 20px;
-    background-color: #247edd !important;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.12) 51%, rgba(0, 0, 0, 0.04));
-    cursor: pointer;
-    transition: all 0.3s !important;
-    text-align: center;
-    vertical-align: middle;
-    outline: none;
-    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.4), 3px 6px 14px rgba(0, 0, 0, 0.4);
-    border-radius: 50px !important;
-    border: 3px solid #154c86 !important;
-    color: #fff;
-    font-size: 1.0em !important;
-    display: inline-block !important;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.7);
-}
-
-.search-button:hover {
-    background-color: #1a74d3 !important;
-    box-shadow: 0px 5px 20px rgba(3, 169, 244, 0.5) !important;
-    border: 3px solid rgb(33, 150, 243) !important;
-}
-
-.search-button:active {
-    color: #17954c !important;
-}
-
-.price {
-    color: #F44336 !important;
-    font-size: 1.2em !important;
-}
-
-.header {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-}
-
-.filter-nav {
-    background: 0 !important;
-}
-
-.filter-bar {
-    height: 60px;
-    width: 100% !important;
-    background: url(../images/nav.png) #212121 !important;
-    background-repeat: repeat-x;
-    vertical-align: middle !important;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-}
-
-.search-group {
-    display: inline-block;
-}
-
-.header-form {
-    padding-top: 15px;
-    vertical-align: middle; !important;
 }
 
 .logo {
@@ -161,10 +49,72 @@ body {
     background: rgba(3, 169, 244, 0.1) !important;
 }
 
-.filter-bar-text {
-    color: #828282 !important;
+.vendor-name {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-.result-item:hover {
-    text-decoration: none; !important;
+.section-title {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: 700 !important;
+    color: #0E97F3 !important;
+}
+
+.separator {
+    margin-top: 30px;
+    color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 1px 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.review {
+    margin: 20px 40px 0px 40px !important;
+}
+
+.title-bar {
+    margin: 30px 40px 0px 40px !important;
+}
+
+.vendor-info {
+    margin-left: 40px !important;
+    margin-right: 40px !important;
+}
+
+.header {
+    width: 100%;
+    vertical-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.navigation-bar {
+    height: 60px;
+    width: 100% !important;
+    background: url("../images/nav.png") #212121 !important;
+    background-repeat: repeat-x;
+    vertical-align: middle !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.vendor-card {
+    display: inline-block !important;
+    width: 40%;
+    margin: 30px;
+    border-radius: 6px;
+    box-shadow: 3px 6px 14px rgba(0, 0, 0, 0.4);
+    border: 3px solid rgba(0, 0, 0, 0) !important;
+    transition: all 0.3s;
+}
+
+.vendor-card:hover {
+    box-shadow: 0px 5px 20px rgba(3, 169, 244, 0.7);
+    border: 3px solid rgb(33, 150, 243) !important;
+}
+
+.intro-text {
+    margin: 30px;
+    font-size: 0.8em;
 }

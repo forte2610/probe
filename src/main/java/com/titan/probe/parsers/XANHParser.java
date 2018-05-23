@@ -50,10 +50,10 @@ public class XANHParser implements  VendorParser {
                     // price
                     currentProduct.setPrice(price);
                     // type
-                    if (currentProduct.getVendorURL().substring(28, 39).equals("dien-thoai")) currentProduct.setType("Phone");
-                    else if (currentProduct.getVendorURL().substring(28, 35).equals("laptop")) currentProduct.setType("Laptop");
+
+                    if (currentProduct.getVendorURL().substring(28, 38).equals("dien-thoai")) currentProduct.setType("Phone");
+                    else if (currentProduct.getVendorURL().substring(28, 34).equals("laptop")) currentProduct.setType("Laptop");
                     else currentProduct.setType("Null");
-                    currentProduct.setType(product.select("a > h3").text());
                     // info
                     String productInfo = product.select("figure > span").text();
 

@@ -14,21 +14,34 @@
 
 <body>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="container bootstrap snippet">
-    <c:forEach  items="${vendors}" var ="vendor">
-        <div class="row">
-            <div class="well search-result">
-                <a class="row" href="/vendor-details/${vendor.id}">
-                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
-                        <img class="img-fluid" src="logos/${vendor.logo}" alt="">
-                    </div>
-                    <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
-                        <h3>${vendor.name}</h3>
-                        <p>${vendor.score} <i class="fas fa-star"></i></p>
-                        <p>${vendor.description}</p>
-                    </div>
-                </a>
+<div class="container main-content">
+    <div class="row header">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <a href="/"><img class="img-fluid logo" src="../images/coming.png" alt=""></a>
+        </div>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+        </div>
+    </div>
+    <div class="navigation-bar">
+        <nav class="navbar navbar-expand-lg filter-nav">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#filter-bar"
+                    aria-controls="filter-bar" aria-expanded="false" aria-label="Advanced tools">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="filter-bar">
+                <ul class="navbar-nav mr-auto">
+                    <p class="navbar-text filter-bar-text">All vendors</p>
+                </ul>
             </div>
+        </nav>
+    </div>
+
+    <p class="intro-text">Below are the vendors we pull our search results from. Click on a vendor's logo to view their detailed information and submit a review.</p>
+    <c:forEach  items="${vendors}" var ="vendor">
+        <div class="card vendor-card">
+            <a href="/vendor-details/${vendor.id}">
+                <img class="img-fluid" src="logos/${vendor.logo}" alt="">
+            </a>
         </div>
     </c:forEach>
 
