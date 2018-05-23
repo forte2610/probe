@@ -130,7 +130,7 @@
             </c:choose>
         </c:forEach>
         <c:choose>
-            <c:when test="${pageListHolder.lastPage}">&gt;</c:when>
+            <c:when test="${pageListHolder.lastPage}"><div class="page-link page-link-active">&gt;</div></c:when>
             <c:otherwise><a class="page-link" href="/search?q=${resultDetails.keyword}&p=next">&gt;</a></c:otherwise>
         </c:choose>
     </div>
