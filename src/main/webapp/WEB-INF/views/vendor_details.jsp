@@ -55,7 +55,15 @@
             <p><i class="content-icon fas fa-phone"></i> 028.386.33333</p>
             <p><i class="content-icon fas fa-envelope"></i> cskh@thegioididong.com</p>
             <p class="section-title">REPUTATION</p>
-            <p><i class="content-icon fas fa-star"></i> ${review_score} (based on ${review_count} reviews)</p>
+            <c:choose>
+                <c:when test="${review_count > 0}">
+                    <p><i class="content-icon fas fa-star"></i> ${review_score} (based on ${review_count} reviews)</p>
+                </c:when>
+                <c:otherwise>
+                    <p>There are no user reviews for this vendor yet.</p>
+                </c:otherwise>
+            </c:choose>
+
         </div>
     </div>
 

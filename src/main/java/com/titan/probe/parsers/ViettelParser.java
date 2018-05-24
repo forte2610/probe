@@ -33,6 +33,7 @@ public class ViettelParser implements VendorParser {
                 return;
             }
             for (Element product : productList) {
+                System.out.println(product.text());
                 int price = parsePrice(product.getElementsByClass("price").text());
                 if (price != -1) {
 

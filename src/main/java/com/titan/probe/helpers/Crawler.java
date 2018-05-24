@@ -37,14 +37,14 @@ public class Crawler {
         String strTheGioiDiDong = keyword.replaceAll(" ", "+");
         String strVienThongA = keyword;
         String strFPTSHOP = keyword.replaceAll(" ", "-");
-        String strMaiNguyen = keyword;
+        // String strViettel = keyword;
         String strTiki = keyword.replaceAll(" ", "+");
 
         VendorParser fptParser = new FPTParser(strFPTSHOP);
         VendorParser xanhParser = new XANHParser(strDienMay);
         VendorParser tgddParser = new TGDDParser(strTheGioiDiDong);
         VendorParser vienthongAParser = new VienthongAParser(strVienThongA);
-        //VendorParser mainguyenParser = new MaiNguyenParser(strMaiNguyen);
+        // VendorParser viettelParser = new ViettelParser(strViettel);
         VendorParser tikiParser = new TikiParser(strTiki);
         try {
             ExecutorService service = Executors.newFixedThreadPool(5);
@@ -53,7 +53,7 @@ public class Crawler {
             service.submit(new CrawlerRunnable(tgddParser, productList));
             service.submit(new CrawlerRunnable(vienthongAParser, productList));
             service.submit(new CrawlerRunnable(tikiParser, productList));
-            //service.submit(new CrawlerRunnable(mainguyenParser, productList));
+            // service.submit(new CrawlerRunnable(viettelParser, productList));
             service.shutdown();
             service.awaitTermination(1, TimeUnit.DAYS);
         } catch (Exception ex) {
