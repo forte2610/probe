@@ -101,7 +101,7 @@
 
                         <div class="form-group">
                             <div class="float-right">
-                                <button type="submit" class="btn btn-primary btn-block review-button">Submit review
+                                <button type="submit" class="btn btn-primary btn-block generic-button">Submit review
                                 </button>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
             <div class="row vendor-info">
                 <div class="col-md-12">
                     <p>You need to log in to submit a review.</p>
-                    <a href="/login" class="btn btn-primary btn-block review-button login-button">Log in</a>
+                    <a href="/login" class="btn btn-primary btn-block generic-button login-button">Log in</a>
                 </div>
             </div>
         </c:otherwise>
