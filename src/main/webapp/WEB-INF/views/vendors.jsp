@@ -39,7 +39,7 @@
     <p class="intro-text">Below are the vendors we pull our search results from. Click on a vendor's logo to view their detailed information and submit a review.</p>
     <c:forEach  items="${vendors}" var ="vendor">
         <div class="card vendor-card">
-            <a href="/vendor-details/${vendor.id}">
+            <a href="/vendor-details?id=${vendor.id}">
                 <img class="img-fluid" src="logos/${vendor.logo}" alt="">
             </a>
         </div>

@@ -16,16 +16,15 @@ import com.titan.probe.services.UserService;
 import com.titan.probe.services.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -58,29 +57,47 @@ public class VendorController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/vendor-details/{id}", method = RequestMethod.GET)
-    public ModelAndView viewVendorDetails(@PathVariable(value="id") int vendorId, Principal user){
+    @RequestMapping(value="/vendor-details", method = RequestMethod.GET)
+    public String viewVendorDetails(HttpServletRequest req, @RequestParam(value="id") int vendorId,
+                                          @RequestParam(value = "p", required = false) String page, Principal user){
         Vendor currentVendor = vendorService.findVendorById(vendorId).get();
-        List<Review> allReviews = vendorService.getReviews(vendorId);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("vendor_details");
         if (user != null) {
-            modelAndView.addObject("is_loggedin", true);
-            modelAndView.addObject("user_name",user.getName());
+            req.getSession().setAttribute("is_loggedin", true);
+            req.getSession().setAttribute("user_name",user.getName());
         }
-        else modelAndView.addObject("is_loggedin", false);
-        modelAndView.addObject("vendor", currentVendor);
-        modelAndView.addObject("reviews", allReviews);
+        else req.getSession().setAttribute("is_loggedin", false);
+        req.getSession().setAttribute("vendor", currentVendor);
         double reviewScore = 0;
-        int reviewCount = allReviews.size();
-        for (int i = 0; i < reviewCount; i++) {
-            reviewScore += allReviews.get(i).getScore();
+        if (page == null) {
+            List<Review> allReviews = vendorService.getReviews(vendorId);
+            int reviewCount = allReviews.size();
+            for (int i = 0; i < reviewCount; i++) {
+                reviewScore += allReviews.get(i).getScore();
+            }
+            if (reviewCount > 0) reviewScore = Math.round((reviewScore / reviewCount) * 2) / 2.0;
+            else reviewScore = 2.5;
+            PagedListHolder<Review> pagedReviewList = new PagedListHolder<>();
+            pagedReviewList.setSource(allReviews);
+            pagedReviewList.setPageSize(20);
+            req.getSession().setAttribute("reviewList", pagedReviewList);
+            req.getSession().setAttribute("currentPage", pagedReviewList.getPage());
+            req.getSession().setAttribute("review_score", reviewScore);
+            req.getSession().setAttribute("review_count", reviewCount);
+        } else if (page.equals("next")) {
+            PagedListHolder<Review> pagedReviewList = (PagedListHolder<Review>) req.getSession().getAttribute("reviewList");
+            if (!pagedReviewList.isLastPage())
+                return "redirect:/vendor-details?id=" + vendorId + "&p=" + (pagedReviewList.getPage() + 1);
+        } else if (page.equals("prev")) {
+            PagedListHolder<Review> pagedReviewList = (PagedListHolder<Review>) req.getSession().getAttribute("reviewList");
+            if (!pagedReviewList.isFirstPage())
+                return "redirect:/vendor-details?id=" + vendorId + "&p=" + (pagedReviewList.getPage() - 1);
+        } else {
+            PagedListHolder<Review> pagedReviewList = (PagedListHolder<Review>) req.getSession().getAttribute("reviewList");
+            int pageIndex = Integer.parseInt(page);
+            pagedReviewList.setPage(pageIndex);
+            req.getSession().setAttribute("currentPage", pagedReviewList.getPage());
         }
-        if (reviewCount > 0) reviewScore = Math.round((reviewScore / reviewCount) * 2) / 2.0;
-        else reviewScore = 2.5;
-        modelAndView.addObject("review_score", reviewScore);
-        modelAndView.addObject("review_count", reviewCount);
-        return modelAndView;
+        return "vendor_details";
     }
 
     @RequestMapping(value="/submit-review/{id}", method = RequestMethod.GET)

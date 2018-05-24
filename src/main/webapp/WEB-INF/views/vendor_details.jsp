@@ -9,6 +9,7 @@
     <title>Vendor details of ${vendor.name}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="../css/common.css" rel="stylesheet" type="text/css"></link>
     <link href="../css/vendor_details.css" rel="stylesheet" type="text/css"></link>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"
@@ -118,16 +119,18 @@
         </c:otherwise>
     </c:choose>
 
-    <hr class="separator">
-
-    <div class="row vendor-info">
-        <div class="col-md-12">
-            <p class="section-title">USER REVIEWS</p>
-        </div>
-    </div>
-
     <c:if test="${review_count > 0}">
-        <c:forEach items="${reviews}" var="review">
+        <c:set var="pageListHolder" value="${reviewList}" scope="session"/>
+
+        <hr class="separator">
+
+        <div class="row vendor-info">
+            <div class="col-md-12">
+                <p class="section-title">USER REVIEWS</p>
+            </div>
+        </div>
+
+        <c:forEach items="${pageListHolder.pageList}" var="review">
             <div class="row review">
                 <div class="col-md-12">
                     <p><b>${review.author.username}</b></p>
@@ -167,6 +170,24 @@
             </c:if>
         </c:forEach>
     </c:if>
+    <div class="row vendor-info">
+        <div class="helios-pagination">
+            <c:choose>
+                <c:when test="${pageListHolder.firstPage}"><div class="page-link page-link-active">&lt;</div></c:when>
+                <c:otherwise><a class="page-link" href="/vendor-details?id=${vendor.id}&p=prev">&lt;</a></c:otherwise>
+            </c:choose>
+            <c:forEach begin="0" end="${pageListHolder.pageCount-1}" varStatus="loop">
+                <c:choose>
+                    <c:when test="${loop.index == pageListHolder.page}"><div class="page-link page-link-active">${loop.index+1}</div></c:when>
+                    <c:otherwise><a class="page-link" href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a></c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <c:choose>
+                <c:when test="${pageListHolder.lastPage}"><div class="page-link page-link-active">&gt;</div></c:when>
+                <c:otherwise><a class="page-link" href="/vendor-details?id=${vendor.id}&p=next">&gt;</a></c:otherwise>
+            </c:choose>
+        </div>
+    </div>
 </div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
