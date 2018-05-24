@@ -50,7 +50,9 @@ public class FPTParser implements VendorParser {
                     // price
                     currentProduct.setPrice(price);
                     // type
-                    currentProduct.setType(product.select("a > h3").text());
+                    if (currentProduct.getVendorURL().substring(23, 33).equals("dien-thoai")) currentProduct.setType("Phone");
+                    else if (currentProduct.getVendorURL().substring(23, 29).equals("laptop")) currentProduct.setType("Laptop");
+                    else currentProduct.setType("Null");
                     // info
                     String productInfo = product.select("figure > span").text();
 
