@@ -3,6 +3,7 @@ package com.titan.probe.parsers;
 import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.titan.probe.helpers.DotPriceParser;
 import com.titan.probe.models.Product;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -15,10 +16,12 @@ import java.util.List;
 public class TGDDParser implements VendorParser {
     private String keyword;
     private List<Product> resultList;
+    private DotPriceParser priceParser;
 
     public TGDDParser(String sKeyword) {
         this.keyword = sKeyword;
         resultList = new ArrayList<Product>();
+        priceParser = new DotPriceParser();
     }
 
     @Override
@@ -62,7 +65,7 @@ public class TGDDParser implements VendorParser {
                 return;
             }
             for (Element product : productList) {
-                int price = parsePrice(product.select("figure > strong").text());
+                int price = priceParser.parsePrice(product.select("figure > strong").text());
                 if (price != -1) {
 
                     Product currentProduct = new Product();
@@ -100,29 +103,6 @@ public class TGDDParser implements VendorParser {
             }
             System.out.println(ex + "\t" + ex.getMessage());
         }
-    }
-
-    // This is a bunch of spaghetti code. I should look into rewriting it.
-    private int parsePrice(String value) {
-        int result = -1;
-        try {
-            if (!value.trim().equals("")) {
-                String temp = value.substring(0, value.length() - 1).trim();
-                char c = 46;
-                temp = temp.replaceAll("\\" + Character.toString(c), "");
-                result = Integer.parseInt(temp);
-
-            }
-
-        } catch (Exception ex) {
-            for (StackTraceElement stackTraceElement : ex.getStackTrace()) {
-                System.out.println(stackTraceElement);
-            }
-            System.out.println(ex + "\t" + ex.getMessage());
-        } finally {
-
-        }
-        return result;
     }
 
     public List<Product> getResults() {
