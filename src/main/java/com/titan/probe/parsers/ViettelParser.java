@@ -23,6 +23,7 @@ public class ViettelParser implements VendorParser {
 
     @Override
     public void process() {
+        // Currently fails to connect and ends up with a timeout. Needs further investigation.
         String url = "https://viettelstore.vn/ket-qua-tim-kiem.html?keyword=";
 
         try {
