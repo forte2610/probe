@@ -156,6 +156,7 @@ body {
 .review-button:hover {
     background-color: #333 !important;
     background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgb(33, 150, 243) !important;
 }
 
 .review-button:active {
@@ -164,6 +165,10 @@ body {
     background: rgba(255, 255, 255, 0.01);
     border-color: black rgba(0, 0, 0, 0.65) rgba(0, 0, 0, 0.6);
     box-shadow: inset 0 1px rgba(0, 0, 0, 0.05), inset 0 2px 2px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.login-button {
+    max-width: 200px !important;
 }
 
 .helios-textbox {
@@ -207,4 +212,8 @@ body {
 
 .helios-label {
     font-size: 0.9em;
+}
+
+.login-block {
+    margin-left: 50px;
 }

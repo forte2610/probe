@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +44,7 @@ public class VendorController {
 
     @ModelAttribute("newReview")
     public Review getReview() {
-        Review review = new Review();
-        return review;
+        return new Review();
     }
 
     @RequestMapping(value="/vendors", method = RequestMethod.GET)
@@ -59,11 +59,16 @@ public class VendorController {
     }
 
     @RequestMapping(value="/vendor-details/{id}", method = RequestMethod.GET)
-    public ModelAndView viewVendorDetails(@PathVariable(value="id") int vendorId){
+    public ModelAndView viewVendorDetails(@PathVariable(value="id") int vendorId, Principal user){
         Vendor currentVendor = vendorService.findVendorById(vendorId).get();
         List<Review> allReviews = vendorService.getReviews(vendorId);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("vendor_details");
+        if (user != null) {
+            modelAndView.addObject("is_loggedin", true);
+            modelAndView.addObject("user_name",user.getName());
+        }
+        else modelAndView.addObject("is_loggedin", false);
         modelAndView.addObject("vendor", currentVendor);
         modelAndView.addObject("reviews", allReviews);
         double reviewScore = 0;

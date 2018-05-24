@@ -75,35 +75,48 @@
         </div>
     </div>
 
-    <div class="row review-area">
-        <div class="col-md-2 offset-md-2 userinfo">
-            <div class="row"><img class="img-fluid" src="../images/user_icon.png"></div>
-            <div class="row login-name">Logged in as&nbsp;<b>test</b></div>
-        </div>
-        <div class="col-md-6">
-            <form:form action="/submit-review/${vendor.id}" method="post"
-                       modelAttribute="newReview" autocomplete="off" class="form-horizontal">
-                <div class="form-group">
-                    <label class="helios-label" for="score">Give this vendor a score:</label>
-                    <form:input type="number" name="score" path="score" value="2.5"
-                                min="1" max="5" step="0.5" class="form-control helios-textbox"/>
-                </div>
 
-                <div class="form-group">
-                    <label class="helios-label" for="content">Leave a comment:</label>
-                    <form:textarea type="text" rows="5" name="content" path="content" placeholder="Content"
-                                   class="form-control helios-textbox"/>
+    <c:choose>
+        <c:when test="${is_loggedin == true}">
+            <div class="row review-area">
+                <div class="col-md-2 offset-md-2 userinfo">
+                    <div class="row"><img class="img-fluid" src="../images/user_icon.png"></div>
+                    <div class="row login-name">Logged in as&nbsp;<b>${user_name}</b></div>
                 </div>
+                <div class="col-md-6">
+                    <form:form action="/submit-review/${vendor.id}" method="post"
+                               modelAttribute="newReview" autocomplete="off" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="helios-label" for="score">Give this vendor a score:</label>
+                            <form:input type="number" name="score" path="score" value="2.5"
+                                        min="1" max="5" step="0.5" class="form-control helios-textbox"/>
+                        </div>
 
-                <div class="form-group">
-                    <div class="float-right">
-                        <button type="submit" class="btn btn-primary btn-block review-button">Submit review</button>
-                    </div>
+                        <div class="form-group">
+                            <label class="helios-label" for="content">Leave a comment:</label>
+                            <form:textarea type="text" rows="5" name="content" path="content" placeholder="Content"
+                                           class="form-control helios-textbox"/>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-primary btn-block review-button">Submit review
+                                </button>
+                            </div>
+                        </div>
+                    </form:form>
                 </div>
-
-            </form:form>
-        </div>
-    </div>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div class="row vendor-info">
+                <div class="col-md-12">
+                    <p>You need to log in to submit a review.</p>
+                    <a href="/login" class="btn btn-primary btn-block review-button login-button">Log in</a>
+                </div>
+            </div>
+        </c:otherwise>
+    </c:choose>
 
     <hr class="separator">
 
