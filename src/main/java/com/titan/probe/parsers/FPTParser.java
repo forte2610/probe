@@ -1,5 +1,8 @@
 package com.titan.probe.parsers;
 
+import com.titan.probe.helpers.LaptopType;
+import com.titan.probe.helpers.PhoneType;
+import com.titan.probe.helpers.UnknownType;
 import com.titan.probe.models.Product;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -50,9 +53,9 @@ public class FPTParser implements VendorParser {
                     // price
                     currentProduct.setPrice(price);
                     // type
-                    if (currentProduct.getVendorURL().substring(23, 33).equals("dien-thoai")) currentProduct.setType("Phone");
-                    else if (currentProduct.getVendorURL().substring(23, 29).equals("laptop")) currentProduct.setType("Laptop");
-                    else currentProduct.setType("Null");
+                    if (currentProduct.getVendorURL().substring(23, 33).equals("dien-thoai")) currentProduct.setType(new PhoneType());
+                    else if (currentProduct.getVendorURL().substring(23, 29).equals("laptop")) currentProduct.setType(new LaptopType());
+                    else currentProduct.setType(new UnknownType());
                     // info
                     String productInfo = product.select("figure > span").text();
 

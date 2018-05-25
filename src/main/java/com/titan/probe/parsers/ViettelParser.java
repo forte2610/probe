@@ -1,6 +1,7 @@
 package com.titan.probe.parsers;
 
 import com.titan.probe.helpers.DotPriceParser;
+import com.titan.probe.helpers.UnknownType;
 import com.titan.probe.models.Product;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -57,7 +58,7 @@ public class ViettelParser implements VendorParser {
                     // price
                     currentProduct.setPrice(price);
                     // type
-                    currentProduct.setType(product.select("a > h3").text());
+                    currentProduct.setType(new UnknownType());
                     // info
                     String productInfo = product.select("figure > span").text();
 

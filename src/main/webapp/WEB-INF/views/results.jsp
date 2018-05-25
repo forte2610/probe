@@ -105,14 +105,14 @@
                                 <p>${product.description}</p>
                                 <p><small>${product.vendorURL}</small></p>
                                 <c:choose>
-                                    <c:when test="${product.type == 'Phone'}">
-                                        <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Phone</span>
+                                    <c:when test="${product.type.name == 'Phone'}">
+                                        <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;${product.type.name}</span>
                                     </c:when>
-                                    <c:when test="${product.type == 'Laptop'}">
-                                        <span class="badge badge-primary"><i class="fas fa-laptop"></i>&nbsp;&nbsp;Laptop</span>
+                                    <c:when test="${product.type.name == 'Laptop'}">
+                                        <span class="badge badge-primary"><i class="fas fa-laptop"></i>&nbsp;&nbsp;${product.type.name}</span>
                                     </c:when>
                                     <c:otherwise>
-                                        <span class="badge badge-primary">No category specified</span>
+                                        <span class="badge badge-primary"><i class="fas fa-question-circle"></i>&nbsp;&nbsp;${product.type.name}</span>
                                     </c:otherwise>
                                 </c:choose>
                                 &nbsp;
@@ -135,14 +135,14 @@
                                 <p>${product.description}</p>
                                 <p><small>${product.vendorURL}</small></p>
                                 <c:choose>
-                                    <c:when test="${product.type == 'Phone'}">
-                                        <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Phone</span>
+                                    <c:when test="${product.type.name == 'Phone'}">
+                                        <span class="badge badge-primary"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;${product.type.name}</span>
                                     </c:when>
-                                    <c:when test="${product.type == 'Laptop'}">
-                                        <span class="badge badge-primary"><i class="fas fa-laptop"></i>&nbsp;&nbsp;Laptop</span>
+                                    <c:when test="${product.type.name == 'Laptop'}">
+                                        <span class="badge badge-primary"><i class="fas fa-laptop"></i>&nbsp;&nbsp;${product.type.name}</span>
                                     </c:when>
                                     <c:otherwise>
-                                        <span class="badge badge-primary">No type specified</span>
+                                        <span class="badge badge-primary"><i class="fas fa-question-circle"></i>&nbsp;&nbsp;${product.type.name}</span>
                                     </c:otherwise>
                                 </c:choose>
                             </div>

@@ -1,6 +1,9 @@
 package com.titan.probe.parsers;
 
 import com.titan.probe.helpers.DotPriceParser;
+import com.titan.probe.helpers.LaptopType;
+import com.titan.probe.helpers.PhoneType;
+import com.titan.probe.helpers.UnknownType;
 import com.titan.probe.models.Product;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -57,10 +60,10 @@ public class TikiParser implements VendorParser {
                     currentProduct.setPrice(price);
                     // type
                     if (currentProduct.getName().substring(0, 10).equals("Điện thoại") || currentProduct.getName().substring(0, 10).equals("Điện Thoại"))
-                        currentProduct.setType("Phone");
+                        currentProduct.setType(new PhoneType());
                     else if (currentProduct.getName().substring(0, 9).equals("Laptop") || currentProduct.getName().contains("Macbook"))
-                        currentProduct.setType("Laptop");
-                    else currentProduct.setType("Null");
+                        currentProduct.setType(new LaptopType());
+                    else currentProduct.setType(new UnknownType());
                     // info
                     String productInfo = product.select("figure > span").text();
 

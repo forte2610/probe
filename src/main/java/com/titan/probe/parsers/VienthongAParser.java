@@ -1,6 +1,7 @@
 package com.titan.probe.parsers;
 
 import com.titan.probe.helpers.CommaPriceParser;
+import com.titan.probe.helpers.UnknownType;
 import com.titan.probe.models.Product;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -53,7 +54,7 @@ public class VienthongAParser implements VendorParser {
                     // price
                     currentProduct.setPrice(price);
                     // type
-                    currentProduct.setType(product.select("a > h3").text());
+                    currentProduct.setType(new UnknownType());
                     // info
                     String productInfo = product.getElementsByClass("product-overlay").select("div[itemprop = description]").select("p").text();
 

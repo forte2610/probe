@@ -4,6 +4,9 @@ import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.titan.probe.helpers.DotPriceParser;
+import com.titan.probe.helpers.LaptopType;
+import com.titan.probe.helpers.PhoneType;
+import com.titan.probe.helpers.UnknownType;
 import com.titan.probe.models.Product;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -84,9 +87,9 @@ public class TGDDParser implements VendorParser {
                     // price
                     currentProduct.setPrice(price);
                     // type
-                    if (currentProduct.getVendorURL().substring(29, 33).equals("dtdd")) currentProduct.setType("Phone");
-                    else if (currentProduct.getVendorURL().substring(29, 35).equals("laptop")) currentProduct.setType("Laptop");
-                    else currentProduct.setType("Null");
+                    if (currentProduct.getVendorURL().substring(29, 33).equals("dtdd")) currentProduct.setType(new PhoneType());
+                    else if (currentProduct.getVendorURL().substring(29, 35).equals("laptop")) currentProduct.setType(new LaptopType());
+                    else currentProduct.setType(new UnknownType());
                     // info
                     String productInfo = product.select("figure > span").text();
 
