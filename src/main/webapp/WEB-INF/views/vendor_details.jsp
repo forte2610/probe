@@ -185,7 +185,7 @@
                         <c:forEach begin="${pageListHolder.page-3}" end="${pageListHolder.page-1}" varStatus="loop">
                             <a class="page-link" href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a>
                         </c:forEach>
-                        <a class="page-link" href="/vendor-details?id=${vendor.id}&p=${pageListHolder.page}">${pageListHolder.page+1}</a>
+                        <a class="page-link page-link-active" href="/vendor-details?id=${vendor.id}&p=${pageListHolder.page}">${pageListHolder.page+1}</a>
                         <c:forEach begin="${pageListHolder.page+1}" end="${pageListHolder.page+3}" varStatus="loop">
                             <a class="page-link" href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a>
                         </c:forEach>
