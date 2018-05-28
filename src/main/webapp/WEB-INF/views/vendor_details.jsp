@@ -120,7 +120,6 @@
     </c:choose>
 
     <c:if test="${review_count > 0}">
-        <c:set var="pageListHolder" value="${reviewList}" scope="session"/>
 
         <hr class="separator">
 
@@ -130,7 +129,7 @@
             </div>
         </div>
 
-        <c:forEach items="${pageListHolder.pageList}" var="review">
+        <c:forEach items="${review_list}" var="review">
             <div class="row review">
                 <div class="col-md-12">
                     <p><b>${review.author.username}</b></p>
@@ -141,11 +140,6 @@
                                 <c:forEach var="i" begin="0" end="${review.score}">
                                     <c:if test="${i > 0}">
                                         <i class="fas fa-star"></i>
-                                    </c:if>
-                                </c:forEach>
-                                <c:forEach var="i" begin="0" end="${5 - review.score}">
-                                    <c:if test="${i > 0}">
-                                        <i class="far fa-star"></i>
                                     </c:if>
                                 </c:forEach>
                             </c:when>
@@ -171,41 +165,70 @@
         </c:forEach>
     </c:if>
 
-    <c:if test="${pageListHolder.pageCount != null && pageListHolder.pageCount>1}">
+    <c:if test="${page_count != null && page_count>1}">
         <div class="row vendor-info">
             <div class="helios-pagination">
                 <a class="page-link" href="/vendor-details?id=${vendor.id}&p=0">First</a>
                 <c:choose>
-                    <c:when test="${pageListHolder.firstPage}"><div class="page-link page-link-active">&lt;</div></c:when>
-                    <c:otherwise><a class="page-link" href="/vendor-details?id=${vendor.id}&p=prev">&lt;</a></c:otherwise>
+                    <c:when test="${current_page == 0}">
+                        <div class="page-link page-link-active">&lt;</div>
+                    </c:when>
+                    <c:otherwise><a class="page-link"
+                                    href="/vendor-details?id=${vendor.id}&p=prev">&lt;</a></c:otherwise>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${pageListHolder.page > 2}">
-                        ...
-                        <c:forEach begin="${pageListHolder.page-3}" end="${pageListHolder.page-1}" varStatus="loop">
-                            <a class="page-link" href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a>
-                        </c:forEach>
-                        <a class="page-link page-link-active" href="/vendor-details?id=${vendor.id}&p=${pageListHolder.page}">${pageListHolder.page+1}</a>
-                        <c:forEach begin="${pageListHolder.page+1}" end="${pageListHolder.page+3}" varStatus="loop">
-                            <a class="page-link" href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a>
-                        </c:forEach>
-                        ...
+                    <c:when test="${current_page > 2}">
+                        <c:choose>
+                            <c:when test="${current_page>=page_count-3}">
+                                ...
+                                <c:forEach begin="${current_page-3}" end="${current_page-1}" varStatus="loop">
+                                    <a class="page-link"
+                                       href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a>
+                                </c:forEach>
+                                <a class="page-link page-link-active"
+                                   href="/vendor-details?id=${vendor.id}&p=${current_page}">${current_page+1}</a>
+                                <c:forEach begin="${current_page+1}" end="${page_count-1}" varStatus="loop">
+                                    <a class="page-link"
+                                       href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                ...
+                                <c:forEach begin="${current_page-3}" end="${current_page-1}" varStatus="loop">
+                                    <a class="page-link"
+                                       href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a>
+                                </c:forEach>
+                                <a class="page-link page-link-active"
+                                   href="/vendor-details?id=${vendor.id}&p=${current_page}">${current_page+1}</a>
+                                <c:forEach begin="${current_page+1}" end="${current_page+3}" varStatus="loop">
+                                    <a class="page-link"
+                                       href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a>
+                                </c:forEach>
+                                ...
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
                     <c:otherwise>
                         <c:choose>
-                            <c:when test="${pageListHolder.pageCount > 1 && pageListHolder.pageCount < 6}">
-                                <c:forEach begin="0" end="${pageListHolder.pageCount-1}" varStatus="loop">
+                            <c:when test="${page_count > 1 && page_count < 6}">
+                                <c:forEach begin="0" end="${page_count-1}" varStatus="loop">
                                     <c:choose>
-                                        <c:when test="${loop.index == pageListHolder.page}"><div class="page-link page-link-active">${loop.index+1}</div></c:when>
-                                        <c:otherwise><a class="page-link" href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a></c:otherwise>
+                                        <c:when test="${loop.index == current_page}">
+                                            <div class="page-link page-link-active">${loop.index+1}</div>
+                                        </c:when>
+                                        <c:otherwise><a class="page-link"
+                                                        href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a></c:otherwise>
                                     </c:choose>
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
                                 <c:forEach begin="0" end="5" varStatus="loop">
                                     <c:choose>
-                                        <c:when test="${loop.index == pageListHolder.page}"><div class="page-link page-link-active">${loop.index+1}</div></c:when>
-                                        <c:otherwise><a class="page-link" href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a></c:otherwise>
+                                        <c:when test="${loop.index == current_page}">
+                                            <div class="page-link page-link-active">${loop.index+1}</div>
+                                        </c:when>
+                                        <c:otherwise><a class="page-link"
+                                                        href="/vendor-details?id=${vendor.id}&p=${loop.index}">${loop.index+1}</a></c:otherwise>
                                     </c:choose>
                                 </c:forEach>
                                 ...
@@ -214,10 +237,13 @@
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${pageListHolder.lastPage}"><div class="page-link page-link-active">&gt;</div></c:when>
-                    <c:otherwise><a class="page-link" href="/vendor-details?id=${vendor.id}&p=next">&gt;</a></c:otherwise>
+                    <c:when test="${current_page == page_count - 1}">
+                        <div class="page-link page-link-active">&gt;</div>
+                    </c:when>
+                    <c:otherwise><a class="page-link"
+                                    href="/vendor-details?id=${vendor.id}&p=next">&gt;</a></c:otherwise>
                 </c:choose>
-                <a class="page-link" href="/vendor-details?id=${vendor.id}&p=${pageListHolder.pageCount-1}">Last</a>
+                <a class="page-link" href="/vendor-details?id=${vendor.id}&p=${page_count-1}">Last</a>
             </div>
         </div>
     </c:if>

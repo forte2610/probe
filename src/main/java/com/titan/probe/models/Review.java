@@ -24,7 +24,7 @@ public class Review {
     private String content;
     @Column(name="timestamp")
     private Timestamp timestamp;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name="author")
     private User author;
     @ManyToOne(cascade = CascadeType.ALL)

@@ -1,10 +1,13 @@
 package com.titan.probe.services;
 
+import com.titan.probe.Repositories.ReviewRepository;
 import com.titan.probe.Repositories.VendorRepository;
 import com.titan.probe.models.Review;
 import com.titan.probe.models.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +18,10 @@ public class VendorServiceImplementation implements VendorService {
     @Autowired
     @Qualifier("vendorRepository")
     VendorRepository vendorRepository;
+
+    @Autowired
+    @Qualifier("reviewRepository")
+    ReviewRepository reviewRepository;
 
     @Override
     public Iterable<Vendor> findAll() {
@@ -27,8 +34,8 @@ public class VendorServiceImplementation implements VendorService {
     }
 
     @Override
-    public List<Review> getReviews(int vendorId) {
+    public Page<Review> getReviews(int vendorId, Pageable pageRequest) {
         Vendor vendor = findVendorById(vendorId).get();
-        return vendorRepository.findReviewsForVendor(vendor);
+        return reviewRepository.findAllReviewsOfVendor(vendor, pageRequest);
     }
 }

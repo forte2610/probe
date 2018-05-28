@@ -17,6 +17,8 @@ import com.titan.probe.services.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.support.PagedListHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -46,8 +48,13 @@ public class VendorController {
         return new Review();
     }
 
-    @RequestMapping(value="/vendors", method = RequestMethod.GET)
-    public ModelAndView viewVendors(){
+    private PageRequest gotoPage(int page) {
+        PageRequest request = PageRequest.of(page, 20);
+        return request;
+    }
+
+    @RequestMapping(value = "/vendors", method = RequestMethod.GET)
+    public ModelAndView viewVendors() {
         List<Vendor> vendors = new ArrayList<Vendor>();
         Iterable<Vendor> vendorIterable = vendorService.findAll();
         vendorIterable.forEach(vendors::add);
@@ -57,51 +64,48 @@ public class VendorController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/vendor-details", method = RequestMethod.GET)
-    public String viewVendorDetails(HttpServletRequest req, @RequestParam(value="id") int vendorId,
-                                          @RequestParam(value = "p", required = false) String page, Principal user){
+    @RequestMapping(value = "/vendor-details", method = RequestMethod.GET)
+    public String viewVendorDetails(HttpServletRequest req, @RequestParam(value = "id") int vendorId,
+                                    @RequestParam(value = "p", required = false) String page, Principal user) {
         Vendor currentVendor = vendorService.findVendorById(vendorId).get();
         if (user != null) {
             req.getSession().setAttribute("is_loggedin", true);
-            req.getSession().setAttribute("user_name",user.getName());
-        }
-        else req.getSession().setAttribute("is_loggedin", false);
+            req.getSession().setAttribute("user_name", user.getName());
+        } else req.getSession().setAttribute("is_loggedin", false);
         req.getSession().setAttribute("vendor", currentVendor);
         double reviewScore = 0;
         if (page == null) {
-            List<Review> allReviews = vendorService.getReviews(vendorId);
-            int reviewCount = allReviews.size();
-            for (int i = 0; i < reviewCount; i++) {
-                reviewScore += allReviews.get(i).getScore();
+            Page<Review> pagedReviews = vendorService.getReviews(vendorId, gotoPage(0));
+            long reviewCount = pagedReviews.getTotalElements();
+            long pageCount = pagedReviews.getTotalPages();
+/*            for (int i = 0; i < reviewCount; i++) {
+                reviewScore += pagedReviews.get(i).getScore();
             }
             if (reviewCount > 0) reviewScore = Math.round((reviewScore / reviewCount) * 2) / 2.0;
-            else reviewScore = 2.5;
-            PagedListHolder<Review> pagedReviewList = new PagedListHolder<>();
-            pagedReviewList.setSource(allReviews);
-            pagedReviewList.setPageSize(20);
-            req.getSession().setAttribute("reviewList", pagedReviewList);
-            req.getSession().setAttribute("currentPage", pagedReviewList.getPage());
+            else reviewScore = 2.5;*/
+            reviewScore = 2.5;
+            req.getSession().setAttribute("review_list", pagedReviews.getContent());
+            req.getSession().setAttribute("current_page", 0);
             req.getSession().setAttribute("review_score", reviewScore);
             req.getSession().setAttribute("review_count", reviewCount);
+            req.getSession().setAttribute("page_count", pageCount);
         } else if (page.equals("next")) {
-            PagedListHolder<Review> pagedReviewList = (PagedListHolder<Review>) req.getSession().getAttribute("reviewList");
-            if (!pagedReviewList.isLastPage())
-                return "redirect:/vendor-details?id=" + vendorId + "&p=" + (pagedReviewList.getPage() + 1);
+            int pageNumber = (int)req.getSession().getAttribute("current_page");
+            return "redirect:/vendor-details?id=" + vendorId + "&p=" + (pageNumber + 1);
         } else if (page.equals("prev")) {
-            PagedListHolder<Review> pagedReviewList = (PagedListHolder<Review>) req.getSession().getAttribute("reviewList");
-            if (!pagedReviewList.isFirstPage())
-                return "redirect:/vendor-details?id=" + vendorId + "&p=" + (pagedReviewList.getPage() - 1);
+            int pageNumber = (int)req.getSession().getAttribute("current_page");
+            return "redirect:/vendor-details?id=" + vendorId + "&p=" + (pageNumber - 1);
         } else {
-            PagedListHolder<Review> pagedReviewList = (PagedListHolder<Review>) req.getSession().getAttribute("reviewList");
             int pageIndex = Integer.parseInt(page);
-            pagedReviewList.setPage(pageIndex);
-            req.getSession().setAttribute("currentPage", pagedReviewList.getPage());
+            Page<Review> pagedReviews = vendorService.getReviews(vendorId, gotoPage(pageIndex));
+            req.getSession().setAttribute("review_list", pagedReviews.getContent());
+            req.getSession().setAttribute("current_page", pageIndex);
         }
         return "vendor_details";
     }
 
-    @RequestMapping(value="/submit-review", method = RequestMethod.POST)
-    public String submitNewReview(@RequestParam(value="id") int vendorId, @Valid @ModelAttribute("newReview") Review review, BindingResult result){
+    @RequestMapping(value = "/submit-review", method = RequestMethod.POST)
+    public String submitNewReview(@RequestParam(value = "id") int vendorId, @Valid @ModelAttribute("newReview") Review review, BindingResult result) {
         Vendor currentVendor = vendorService.findVendorById(vendorId).get();
         review.setVendor(currentVendor);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
