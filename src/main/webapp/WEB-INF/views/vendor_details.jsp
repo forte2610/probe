@@ -83,6 +83,11 @@
                 <div class="col-md-2 offset-md-2 userinfo">
                     <div class="row"><img class="img-fluid" src="../images/user_icon.png"></div>
                     <div class="row login-name">Logged in as&nbsp;<b>${user_name}</b></div>
+                    <div class="row">
+                        <form action="/logout" method="post">
+                            <button type="submit" class="logout-button">Log out</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <form:form action="/submit-review?id=${vendor.id}" method="post"
