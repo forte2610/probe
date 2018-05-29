@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface VendorService {
-    public Iterable<Vendor> findAll();
-    public Optional<Vendor> findVendorById(int id);
-    public Page<Review> getReviews(int vendorId, Pageable pageRequest);
+    Iterable<Vendor> findAll();
+    Optional<Vendor> findVendorById(int id);
+    Page<Review> getReviews(int vendorId, Pageable pageRequest);
+    double getAverageScore(int vendorId);
 }

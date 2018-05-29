@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface VendorRepository extends JpaRepository<Vendor, Integer> {
     @Query("SELECT v FROM Vendor v WHERE v.name = ?1")
-    public Vendor findVendorByName(Vendor vendor);
-    @Query("SELECT r FROM Review r WHERE r.vendor = ?1")
-    public List<Review> findReviewsForVendor(Vendor vendor);
+    Vendor findVendorByName(Vendor vendor);
+    @Query("SELECT AVG(r.score) FROM Review r WHERE r.vendor = ?1")
+    double getAverageScore(Vendor vendor);
 }

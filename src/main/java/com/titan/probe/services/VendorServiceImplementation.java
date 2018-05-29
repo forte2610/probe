@@ -38,4 +38,11 @@ public class VendorServiceImplementation implements VendorService {
         Vendor vendor = findVendorById(vendorId).get();
         return reviewRepository.findAllReviewsOfVendor(vendor, pageRequest);
     }
+
+    @Override
+    public double getAverageScore(int vendorId) {
+        Vendor vendor = findVendorById(vendorId).get();
+        double result = vendorRepository.getAverageScore(vendor);
+        return Math.round(result * 2) / 2.0;
+    }
 }

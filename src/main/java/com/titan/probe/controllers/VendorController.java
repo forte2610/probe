@@ -73,17 +73,12 @@ public class VendorController {
             req.getSession().setAttribute("user_name", user.getName());
         } else req.getSession().setAttribute("is_loggedin", false);
         req.getSession().setAttribute("vendor", currentVendor);
-        double reviewScore = 0;
+        double reviewScore;
         if (page == null) {
             Page<Review> pagedReviews = vendorService.getReviews(vendorId, gotoPage(0));
             long reviewCount = pagedReviews.getTotalElements();
             long pageCount = pagedReviews.getTotalPages();
-/*            for (int i = 0; i < reviewCount; i++) {
-                reviewScore += pagedReviews.get(i).getScore();
-            }
-            if (reviewCount > 0) reviewScore = Math.round((reviewScore / reviewCount) * 2) / 2.0;
-            else reviewScore = 2.5;*/
-            reviewScore = 2.5;
+            reviewScore = vendorService.getAverageScore(vendorId);
             req.getSession().setAttribute("review_list", pagedReviews.getContent());
             req.getSession().setAttribute("current_page", 0);
             req.getSession().setAttribute("review_score", reviewScore);
