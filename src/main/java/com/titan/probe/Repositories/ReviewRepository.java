@@ -12,6 +12,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
-    @Query("SELECT r FROM Review r WHERE r.vendor = ?1")
+    @Query("SELECT r FROM Review r WHERE r.vendor = ?1 ORDER BY r.timestamp DESC")
     Page<Review> findAllReviewsOfVendor(Vendor vendor, Pageable pageable);
 }
