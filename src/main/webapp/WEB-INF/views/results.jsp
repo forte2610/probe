@@ -48,8 +48,8 @@
                             Product category: ${filter}
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item"href="/search?q=${resultDetails.keyword}&filter=Phone">Phones</a>
-                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=Laptop">Laptops</a>
+                            <a class="dropdown-item"href="/search?q=${resultDetails.keyword}&filter=Phone&price=${price}&vendor=${vendor}">Phones</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=Laptop&price=${price}&vendor=${vendor}">Laptops</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown filter-dropdown">
@@ -58,11 +58,11 @@
                             Vendor
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="?vendor=dienmayxanh">Điện máy xanh</a>
-                            <a class="dropdown-item" href="#">FPT</a>
-                            <a class="dropdown-item" href="#">Thế giới di động</a>
-                            <a class="dropdown-item" href="#">Tiki</a>
-                            <a class="dropdown-item" href="#">Viettel</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=${price}&vendor=XANH">Điện máy xanh</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=${price}&vendor=FPT">FPT</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=${price}&vendor=TGDD">Thế giới di động</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=${price}&vendor=Tiki">Tiki</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=${price}&vendor=Viettel">Viettel</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown filter-dropdown">

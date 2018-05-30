@@ -49,7 +49,7 @@ public class VienthongAParser implements VendorParser {
                     if (!imageURL.contains("https")) {
                         imageURL = "https://" + imageURL;
                     }
-
+                    currentProduct.setVendorName("VienthongA");
                     currentProduct.setImages(imageURL);
                     // price
                     currentProduct.setPrice(price);

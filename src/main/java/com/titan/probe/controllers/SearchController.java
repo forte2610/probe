@@ -31,9 +31,11 @@ public class SearchController {
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String Search(HttpServletRequest req, @RequestParam("q") String query,
                          @RequestParam(value = "p", required = false) String page,
-                         @RequestParam(name = "filter", defaultValue = "all") String filter) {
+                         @RequestParam(name = "filter", defaultValue = "all") String filter,
+                         @RequestParam(name = "price", defaultValue = "all") String price,
+                        @RequestParam(name = "vendor", defaultValue = "all") String vendor) {
         if (!query.equals("")) {
-            if (page == null) {
+            if (page == null){
                 String keyword = "";
 
                 keyword = query.trim();
@@ -54,7 +56,15 @@ public class SearchController {
                     resultList = resultList.stream()
                             .filter((item)->item.getType().getName().equals(filter)).collect(Collectors.toList());
                 }
+                if (!vendor.equals("all")){
+                    resultList = resultList.stream()
+                            .filter((item)->item.getVendorName().equals(vendor)).collect(Collectors.toList());
+                }
+
                 req.getSession().setAttribute("filter", filter);
+                req.getSession().setAttribute("vendor", vendor);
+                req.getSession().setAttribute("price", price);
+
                 pagedProductList.setSource(resultList);
                 pagedProductList.setPageSize(10);
                 req.getSession().setAttribute("resultList", pagedProductList);
