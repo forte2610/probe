@@ -45,11 +45,11 @@
                     <li class="nav-item dropdown filter-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Product category
+                            Product category: ${filter}
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item"href="?vendor=dienmayxanh">Phones</a>
-                            <a class="dropdown-item" href="#">Laptops</a>
+                            <a class="dropdown-item"href="/search?q=${resultDetails.keyword}&filter=Phone">Phones</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=Laptop">Laptops</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown filter-dropdown">
