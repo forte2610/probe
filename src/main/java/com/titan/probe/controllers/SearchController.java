@@ -22,15 +22,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class SearchController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String Search(HttpServletRequest req, @RequestParam("q") String query,
-                         @RequestParam(value = "p", required = false) String page) {
+                         @RequestParam(value = "p", required = false) String page,
+                         @RequestParam(name = "filter", defaultValue = "all") String filter,
+                         @RequestParam(name = "price", defaultValue = "all") String price,
+                        @RequestParam(name = "vendor", defaultValue = "all") String vendor) {
         if (!query.equals("")) {
-            if (page == null) {
+            if (page == null){
                 String keyword = "";
 
                 keyword = query.trim();
@@ -46,10 +51,32 @@ public class SearchController {
                 ResultDetails details = new ResultDetails(resultObject.getKeyword(),
                         resultObject.getCount(), resultObject.getPages(), resultObject.getTimeElapsed());
                 PagedListHolder<Product> pagedProductList = new PagedListHolder<Product>();
-                pagedProductList.setSource(resultObject.getResultList());
+                List<Product> resultList = resultObject.getResultList();
+                if (!filter.equals("all")){
+                    resultList = resultList.stream()
+                            .filter((item)->item.getType().getName().equals(filter)).collect(Collectors.toList());
+                }
+                if (!vendor.equals("all")){
+                    resultList = resultList.stream()
+                            .filter((item)->item.getVendorName().equals(vendor)).collect(Collectors.toList());
+                }
+                if (!price.equals("all")){
+                    String prices[] = price.split("-");
+                    int price1 = Integer.parseInt(prices[0]);
+                    int price2 = Integer.parseInt(prices[1]);
+                    resultList = resultList.stream()
+                            .filter((item)->(item.getPrice() < price2)&&(item.getPrice()>=price1)).collect(Collectors.toList());
+                }
+
+                req.getSession().setAttribute("filter", filter);
+                req.getSession().setAttribute("vendor", vendor);
+                req.getSession().setAttribute("price", price);
+
+                pagedProductList.setSource(resultList);
                 pagedProductList.setPageSize(10);
                 req.getSession().setAttribute("resultList", pagedProductList);
                 req.getSession().setAttribute("resultDetails", details);
+
                 req.getSession().setAttribute("currentPage", pagedProductList.getPage());
                 System.out.println("Finished after " + details.getTimeElapsed() + " milliseconds.");
             } else if (page.equals("next")) {
@@ -62,6 +89,7 @@ public class SearchController {
                 return "redirect:/search?q=" + query + "&p=" + (pagedProductList.getPage() - 1);
             } else {
                 PagedListHolder<Product> pagedProductList = (PagedListHolder<Product>) req.getSession().getAttribute("resultList");
+
                 int pageIndex = Integer.parseInt(page);
                 pagedProductList.setPage(pageIndex);
                 req.getSession().setAttribute("currentPage", pagedProductList.getPage());

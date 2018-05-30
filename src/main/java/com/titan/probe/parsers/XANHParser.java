@@ -53,6 +53,7 @@ public class XANHParser implements  VendorParser {
                     }
 
                     currentProduct.setImages(imageURL);
+                    currentProduct.setVendorName("XANH");
                     // price
                     currentProduct.setPrice(price);
                     // type

@@ -54,6 +54,7 @@ public class ViettelParser implements VendorParser {
                         imageURL = "https://" + imageURL;
                     }
 
+                    currentProduct.setVendorName("Viettel");
                     currentProduct.setImages(imageURL);
                     // price
                     currentProduct.setPrice(price);

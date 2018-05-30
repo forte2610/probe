@@ -50,6 +50,7 @@ public class FPTParser implements VendorParser {
                     }
 
                     currentProduct.setImages(imageURL);
+                    currentProduct.setVendorName("FPT");
                     // price
                     currentProduct.setPrice(price);
                     // type

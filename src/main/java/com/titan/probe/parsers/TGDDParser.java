@@ -84,6 +84,7 @@ public class TGDDParser implements VendorParser {
                     }
 
                     currentProduct.setImages(imageURL);
+                    currentProduct.setVendorName("TGDD");
                     // price
                     currentProduct.setPrice(price);
                     // type
