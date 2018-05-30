@@ -48,6 +48,7 @@
                             Product category: ${filter}
                         </a>
                         <div class="dropdown-menu">
+                            <a class="dropdown-item"href="/search?q=${resultDetails.keyword}&filter=all&price=${price}&vendor=${vendor}">All</a>
                             <a class="dropdown-item"href="/search?q=${resultDetails.keyword}&filter=Phone&price=${price}&vendor=${vendor}">Phones</a>
                             <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=Laptop&price=${price}&vendor=${vendor}">Laptops</a>
                         </div>
@@ -55,9 +56,10 @@
                     <li class="nav-item dropdown filter-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Vendor
+                            Vendor: ${vendor}
                         </a>
                         <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=${price}&vendor=all">All</a>
                             <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=${price}&vendor=XANH">Điện máy xanh</a>
                             <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=${price}&vendor=FPT">FPT</a>
                             <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=${price}&vendor=TGDD">Thế giới di động</a>
@@ -68,13 +70,14 @@
                     <li class="nav-item dropdown filter-dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            Price range
+                            Price range: ${price}
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">< 100,000đ</a>
-                            <a class="dropdown-item" href="#">100,000đ - 1,000,000đ</a>
-                            <a class="dropdown-item" href="#">1,000,000đ - 10,000,000đ</a>
-                            <a class="dropdown-item" href="#">> 10,000,000đ</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=all&vendor=${vendor}">All</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=0-100000&vendor=${vendor}">< 100,000đ</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=100000-1000000&vendor=${vendor}">100,000đ - 1,000,000đ</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=1000000-10000000&vendor=${vendor}">1,000,000đ - 10,000,000đ</a>
+                            <a class="dropdown-item" href="/search?q=${resultDetails.keyword}&filter=${filter}&price=10000000-2000000000&vendor=${vendor}">> 10,000,000đ</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Custom price</a>
                         </div>

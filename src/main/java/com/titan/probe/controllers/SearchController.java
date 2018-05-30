@@ -60,6 +60,13 @@ public class SearchController {
                     resultList = resultList.stream()
                             .filter((item)->item.getVendorName().equals(vendor)).collect(Collectors.toList());
                 }
+                if (!price.equals("all")){
+                    String prices[] = price.split("-");
+                    int price1 = Integer.parseInt(prices[0]);
+                    int price2 = Integer.parseInt(prices[1]);
+                    resultList = resultList.stream()
+                            .filter((item)->(item.getPrice() < price2)&&(item.getPrice()>=price1)).collect(Collectors.toList());
+                }
 
                 req.getSession().setAttribute("filter", filter);
                 req.getSession().setAttribute("vendor", vendor);
