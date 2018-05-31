@@ -78,10 +78,13 @@ public class VendorController {
             Page<Review> pagedReviews = vendorService.getReviews(vendorId, gotoPage(0));
             long reviewCount = pagedReviews.getTotalElements();
             long pageCount = pagedReviews.getTotalPages();
-            reviewScore = vendorService.getAverageScore(vendorId);
             req.getSession().setAttribute("review_list", pagedReviews.getContent());
             req.getSession().setAttribute("current_page", 0);
-            req.getSession().setAttribute("review_score", reviewScore);
+            if (reviewCount > 0) {
+                reviewScore = vendorService.getAverageScore(vendorId);
+                req.getSession().setAttribute("review_score", reviewScore);
+            }
+            else req.getSession().setAttribute("review_score", 0);
             req.getSession().setAttribute("review_count", reviewCount);
             req.getSession().setAttribute("page_count", pageCount);
         } else if (page.equals("next")) {

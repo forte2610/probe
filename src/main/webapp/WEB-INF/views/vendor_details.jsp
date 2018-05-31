@@ -53,8 +53,8 @@
             <p>${vendor.description}</p>
             <p class="section-title">CONTACT</p>
             <p><i class="content-icon fas fa-link"></i> ${vendor.url}</p>
-            <p><i class="content-icon fas fa-phone"></i> 028.386.33333</p>
-            <p><i class="content-icon fas fa-envelope"></i> cskh@thegioididong.com</p>
+            <p><i class="content-icon fas fa-phone"></i> ${vendor.phone}</p>
+            <p><i class="content-icon fas fa-envelope"></i> ${vendor.email}</p>
             <p class="section-title">REPUTATION</p>
             <c:choose>
                 <c:when test="${review_count > 0}">
