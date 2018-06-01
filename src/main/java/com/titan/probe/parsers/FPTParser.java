@@ -62,7 +62,7 @@ public class FPTParser implements VendorParser {
 
                     currentProduct.setDescription(productInfo);
 
-                    if (!isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
+                    if (!(currentProduct.getType().getName().equals("Unknown")) && !isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
                 }
 
             }

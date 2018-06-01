@@ -96,7 +96,7 @@ public class TGDDParser implements VendorParser {
 
                     currentProduct.setDescription(productInfo);
 
-                    if (!(currentProduct.getType().equals("Null")) && !isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
+                    if (!(currentProduct.getType().getName().equals("Unknown")) && !isDuplicate(currentProduct.getVendorURL())) resultList.add(currentProduct);
                 }
 
             }
